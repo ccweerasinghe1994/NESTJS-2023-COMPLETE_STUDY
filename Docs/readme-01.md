@@ -139,10 +139,32 @@ import {AppModule} from "./app.module";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    // other code
+
+// other code
 ```
 
 ## 9 - Routing Decorators
+
+let's add a new routes
+
+2 - The Basics of Nest\src\app.controller.ts
+
+```ts
+import {Controller, Get} from "@nestjs/common";
+
+@Controller('/api/v1')
+export class AppController {
+    @Get('/hello')
+    getRootRoute() {
+        return 'Hello World';
+    }
+
+    @Get('/bye')
+    getHelloRoute() {
+        return 'Bye World'
+    }
+}
+```
 
 ![alt text](./Assets/images/set-01/14.png)
 ![alt text](./Assets/images/set-01/15.png)
