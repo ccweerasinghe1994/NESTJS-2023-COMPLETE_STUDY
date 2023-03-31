@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/3 - Generating Projects with the Nest CLI/messages" vcs="Git" />
   </component>
 </project>

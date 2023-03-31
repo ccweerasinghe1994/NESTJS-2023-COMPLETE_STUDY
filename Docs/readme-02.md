@@ -128,6 +128,61 @@ content-type: application/json
 
 ```
 
+# 4 - Validating Request Data with Pipes
+
+## 16 - Accessing Request Data with Decorators
+
+```ts
+import {Body, Controller, Get, Post} from '@nestjs/common';
+
+interface BodyI {
+    content: string;
+}
+
+@Controller('messages')
+export class MessagesController {
+    @Get()
+    listMessages() {
+        return [
+            {
+                id: 1,
+                text: 'Message 1',
+            },
+            {
+                id: 2,
+                text: 'Message 2',
+            },
+        ];
+    }
+
+    @Get(':id')
+    getMessage() {
+        return {
+            id: 1,
+            text: 'Message 1',
+        };
+    }
+
+    @Post()
+    createMessage(@Body() body: BodyI) {
+        console.log(body);
+        return {
+            id: 1,
+            content: 'hello world',
+        };
+    }
+}
+
+```
+
+## 17 - Using Pipes for Validation
+
+## 18 - Adding Validation Rules
+
+## 19 - Behind the Scenes of Validation
+
+## 20 - How Type Info is Preserved
+
 ![alt text](./Assets/images/set-01/29.png)
 ![alt text](./Assets/images/set-01/30.png)
 ![alt text](./Assets/images/set-01/31.png)

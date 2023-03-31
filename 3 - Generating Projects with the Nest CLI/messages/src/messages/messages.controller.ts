@@ -1,4 +1,8 @@
-import {Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Get, Post} from '@nestjs/common';
+
+interface BodyI {
+    content: string
+}
 
 @Controller('messages')
 export class MessagesController {
@@ -25,7 +29,8 @@ export class MessagesController {
     }
 
     @Post()
-    createMessage() {
+    createMessage(@Body() body: BodyI) {
+        console.log(body)
         return {
             id: 1,
             content: 'hello world'
