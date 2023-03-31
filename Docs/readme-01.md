@@ -1,6 +1,26 @@
 # Basics of NESTJS
 ## 4 - Project Setup
 ![1.png](./Assets/images/set-01/1.png)
+
+```shell
+npm i @nestjs/common @nestjs/core @nestjs/platform-express reflect-metadata typescript
+```
+
+updated package.json
+```json
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^9.3.12",
+    "@nestjs/core": "^9.3.12",
+    "@nestjs/platform-express": "^9.3.12",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^5.0.3"
+  }
+}
+```
 ## 5 - TypeScript Configuration
 ## 6 - Creating a Controller
 ## 7 - Starting Up a Nest App
