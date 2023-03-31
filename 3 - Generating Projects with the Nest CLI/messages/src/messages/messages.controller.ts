@@ -23,12 +23,12 @@ export class MessagesController {
             text: 'Message 1'
         }
     }
-    
+
     @Post()
     createMessage() {
         return {
             id: 1,
-            text: 'Message 1'
+            content: 'hello world'
         }
     }
 }

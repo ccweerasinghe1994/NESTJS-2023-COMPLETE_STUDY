@@ -61,6 +61,10 @@ messages/messages means that the controller will be created in the messages fold
 
 ## 13 - Adding Routing Logic
 
+![alt text](./Assets/images/set-01/24.png)
+![alt text](./Assets/images/set-01/25.png)
+![alt text](./Assets/images/set-01/26.png)
+![alt text](./Assets/images/set-01/27.png)
 messages.controller.ts
 
 ```ts
@@ -103,13 +107,27 @@ export class MessagesController {
 
 ## 14 - Optional Postman Setup
 
+![alt text](./Assets/images/set-01/28.png)
+
 ## 15 - Optional VSCode REST Client Extension
 
-![alt text](./Assets/images/set-01/24.png)
-![alt text](./Assets/images/set-01/25.png)
-![alt text](./Assets/images/set-01/26.png)
-![alt text](./Assets/images/set-01/27.png)
-![alt text](./Assets/images/set-01/28.png)
+```http request
+
+### list al the messages
+GET http://localhost:3000/messages
+
+### get a message by id
+GET http://localhost:3000/messages/1
+
+### create a message
+POST http://localhost:3000/messages
+content-type: application/json
+{
+  "content": "hello world"
+}
+
+```
+
 ![alt text](./Assets/images/set-01/29.png)
 ![alt text](./Assets/images/set-01/30.png)
 ![alt text](./Assets/images/set-01/31.png)
