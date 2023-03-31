@@ -101,10 +101,49 @@ bootstrap();
 
 ## 8 - File Naming Conventions
 
-## 9 - Routing Decorators
-
 ![alt text](./Assets/images/set-01/12.png)
 ![alt text](./Assets/images/set-01/13.png)
+
+let's refactor the code
+
+2 - The Basics of Nest\src\app.controller.ts
+
+```ts
+import {Controller, Get} from "@nestjs/common";
+
+@Controller()
+export class AppController {
+    @Get()
+    getRootRoute() {
+        return 'Hello World';
+    }
+}
+```
+
+2 - The Basics of Nest\src\app.module.ts
+
+```ts
+import {Module} from "@nestjs/common";
+import {AppController} from "./app.controller";
+
+@Module({controllers: [AppController]})
+export class AppModule {
+}
+```
+
+2 - The Basics of Nest\src\main.ts
+
+```ts
+import {NestFactory} from "@nestjs/core";
+import {AppModule} from "./app.module";
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    // other code
+```
+
+## 9 - Routing Decorators
+
 ![alt text](./Assets/images/set-01/14.png)
 ![alt text](./Assets/images/set-01/15.png)
 ![alt text](./Assets/images/set-01/16.png)
