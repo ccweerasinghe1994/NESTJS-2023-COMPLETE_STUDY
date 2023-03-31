@@ -22,16 +22,32 @@ updated package.json
 }
 ```
 ## 5 - TypeScript Configuration
-## 6 - Creating a Controller
-## 7 - Starting Up a Nest App
-## 8 - File Naming Conventions
-## 9 - Routing Decorators
+
 ![alt text](./Assets/images/set-01/2.png)
 ![alt text](./Assets/images/set-01/3.png)
 ![alt text](./Assets/images/set-01/4.png)
 ![alt text](./Assets/images/set-01/5.png)
 ![alt text](./Assets/images/set-01/6.png)
 ![alt text](./Assets/images/set-01/7.png)
+
+and create a tsconfig file
+
+2 - The Basics of Nest\tsconfig.json
+```json
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2017",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+  }
+}
+```
+
+## 6 - Creating a Controller
+## 7 - Starting Up a Nest App
+## 8 - File Naming Conventions
+## 9 - Routing Decorators
 ![alt text](./Assets/images/set-01/8.png)
 ![alt text](./Assets/images/set-01/9.png)
 ![alt text](./Assets/images/set-01/10.png)
