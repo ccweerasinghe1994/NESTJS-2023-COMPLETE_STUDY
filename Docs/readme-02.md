@@ -131,7 +131,7 @@ content-type: application/json
 # 4 - Validating Request Data with Pipes
 
 ## 16 - Accessing Request Data with Decorators
-
+![alt text](./Assets/images/set-01/29.png)
 ```ts
 import {Body, Controller, Get, Post} from '@nestjs/common';
 
@@ -190,7 +190,22 @@ interface BodyI {
       text: 'Message 1',
 ```
 
+
 ## 17 - Using Pipes for Validation
+![alt text](./Assets/images/set-01/31.png)
+![alt text](./Assets/images/set-01/32.png)
+
+```ts
+import { NestFactory } from '@nestjs/core';
+import { MessagesModule } from './messages/messages.module';
+import { ValidationPipe } from '@nestjs/common';
+async function bootstrap(): Promise<void> {
+  const app = await NestFactory.create(MessagesModule);
+  app.useGlobalPipes(new ValidationPipe());
+  await app.listen(3000);
+}
+
+```
 
 ## 18 - Adding Validation Rules
 
@@ -198,10 +213,7 @@ interface BodyI {
 
 ## 20 - How Type Info is Preserved
 
-![alt text](./Assets/images/set-01/29.png)
-![alt text](./Assets/images/set-01/30.png)
-![alt text](./Assets/images/set-01/31.png)
-![alt text](./Assets/images/set-01/32.png)
+
 ![alt text](./Assets/images/set-01/33.png)
 ![alt text](./Assets/images/set-01/34.png)
 ![alt text](./Assets/images/set-01/35.png)
