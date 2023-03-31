@@ -1,5 +1,7 @@
 # Basics of NESTJS
+
 ## 4 - Project Setup
+
 ![1.png](./Assets/images/set-01/1.png)
 
 ```shell
@@ -7,20 +9,22 @@ npm i @nestjs/common @nestjs/core @nestjs/platform-express reflect-metadata type
 ```
 
 updated package.json
+
 ```json
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@nestjs/common": "^9.3.12",
-    "@nestjs/core": "^9.3.12",
-    "@nestjs/platform-express": "^9.3.12",
-    "reflect-metadata": "^0.1.13",
-    "typescript": "^5.0.3"
-  }
+"keywords": [],
+"author": "",
+"license": "ISC",
+"dependencies": {
+"@nestjs/common": "^9.3.12",
+"@nestjs/core": "^9.3.12",
+"@nestjs/platform-express": "^9.3.12",
+"reflect-metadata": "^0.1.13",
+"typescript": "^5.0.3"
+}
 }
 ```
+
 ## 5 - TypeScript Configuration
 
 ![alt text](./Assets/images/set-01/2.png)
@@ -33,25 +37,45 @@ updated package.json
 and create a tsconfig file
 
 2 - The Basics of Nest\tsconfig.json
+
 ```json
 {
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES2017",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true
   }
 }
 ```
 
 ## 6 - Creating a Controller
-## 7 - Starting Up a Nest App
-## 8 - File Naming Conventions
-## 9 - Routing Decorators
+
 ![alt text](./Assets/images/set-01/8.png)
 ![alt text](./Assets/images/set-01/9.png)
 ![alt text](./Assets/images/set-01/10.png)
 ![alt text](./Assets/images/set-01/11.png)
+
+2 - The Basics of Nest\src\main.ts
+
+```ts
+import {Module, Controller, Get} from '@nestjs/common';
+
+@Controller()
+class AppController {
+    @Get()
+    getRootRoute() {
+        return 'Hello World';
+    }
+}
+```
+
+## 7 - Starting Up a Nest App
+
+## 8 - File Naming Conventions
+
+## 9 - Routing Decorators
+
 ![alt text](./Assets/images/set-01/12.png)
 ![alt text](./Assets/images/set-01/13.png)
 ![alt text](./Assets/images/set-01/14.png)
