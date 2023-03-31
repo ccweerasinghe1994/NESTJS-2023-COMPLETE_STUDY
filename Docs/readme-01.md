@@ -72,6 +72,33 @@ class AppController {
 
 ## 7 - Starting Up a Nest App
 
+let's add a module
+2 - The Basics of Nest\src\main.ts
+
+```ts
+import {Module, Controller, Get} from '@nestjs/common';
+import {NestFactory} from "@nestjs/core";
+
+@Controller()
+class AppController {
+    return
+    'Hello World';
+}
+
+}
+
+@Module({controllers: [AppController]})
+class AppModule {
+}
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    await app.listen(3000);
+}
+
+bootstrap();
+```
+
 ## 8 - File Naming Conventions
 
 ## 9 - Routing Decorators
