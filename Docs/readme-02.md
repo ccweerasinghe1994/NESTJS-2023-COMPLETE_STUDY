@@ -49,13 +49,22 @@ export class AppModule {
 
 ## 12 - More on Generating Files
 
+![alt text](./Assets/images/set-01/23.png)
+let's generate a controller
+
+```shell
+nest generate controller messages/messages --flat
+```
+
+--flat means that the controller will be created in the same folder as the module
+messages/messages means that the controller will be created in the messages folder
+
 ## 13 - Adding Routing Logic
 
 ## 14 - Optional Postman Setup
 
 ## 15 - Optional VSCode REST Client Extension
 
-![alt text](./Assets/images/set-01/23.png)
 ![alt text](./Assets/images/set-01/24.png)
 ![alt text](./Assets/images/set-01/25.png)
 ![alt text](./Assets/images/set-01/26.png)
