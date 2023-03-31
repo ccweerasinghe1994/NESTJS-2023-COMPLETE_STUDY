@@ -20,6 +20,33 @@ nest new messages
 
 ## 11 - Using the Nest CLI to Generate Files
 
+```shell
+nest generate module messages
+```
+
+it will generate a module called messages
+
+```ts
+import {Module} from '@nestjs/common';
+
+@Module({})
+export class MessagesModule {
+}
+```
+
+let's use it in the app module
+
+```ts
+import {Module} from '@nestjs/common';
+import {MessagesModule} from './messages/messages.module';
+
+@Module({
+    imports: [MessagesModule],
+})
+export class AppModule {
+}
+```
+
 ## 12 - More on Generating Files
 
 ## 13 - Adding Routing Logic
