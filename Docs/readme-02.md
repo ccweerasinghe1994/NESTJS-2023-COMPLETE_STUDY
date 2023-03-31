@@ -175,6 +175,21 @@ export class MessagesController {
 
 ```
 
+adding the @Body() decorator will automatically parse the body of the request and return it as an object
+adding the @type() decorator will automatically parse the body of the request and return it as an object
+```ts
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+interface BodyI {
+  content: string;
+  }
+  @Get(':id')
+  getMessage(@Param('id') id: string) {
+    console.log(id);
+    return {
+      id: 1,
+      text: 'Message 1',
+```
+
 ## 17 - Using Pipes for Validation
 
 ## 18 - Adding Validation Rules
