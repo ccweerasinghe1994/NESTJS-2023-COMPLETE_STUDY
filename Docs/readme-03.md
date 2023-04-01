@@ -190,9 +190,6 @@ GET http://localhost:3000/messages/931
 }
 ```
 ## 27 - Understanding Inversion of Control
-## 28 - Introduction to Dependency Injection
-## 29 - Refactoring to Use Dependency Injection
-## 30 - Few More Notes on DI
 
 ![alt text](./Assets/images/set-01/43.png)
 ![alt text](./Assets/images/set-01/44.png)
@@ -202,6 +199,10 @@ GET http://localhost:3000/messages/931
 ![alt text](./Assets/images/set-01/48.png)
 ![alt text](./Assets/images/set-01/49.png)
 ![alt text](./Assets/images/set-01/50.png)
+## 28 - Introduction to Dependency Injection
+## 29 - Refactoring to Use Dependency Injection
+## 30 - Few More Notes on DI
+
 ![alt text](./Assets/images/set-01/51.png)
 ![alt text](./Assets/images/set-01/52.png)
 ![alt text](./Assets/images/set-01/53.png)
