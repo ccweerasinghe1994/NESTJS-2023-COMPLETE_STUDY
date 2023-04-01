@@ -10,20 +10,22 @@
 
 \src\messages\message.repository.ts
 ```ts
-import { readFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 export class MessageRepository {
-  // 1. Add a create() method to the repository
-  async create(message: string) {}
-  // 2. Add a find() method to the repository
-  async find() {}
-  // 3. Add a findOne() method to the repository
-  async findOne(id: string) {
-    console.log(id);
+  async create(content: string) {
     const contents = await readFile('messages.json', 'utf8');
     const messages = JSON.parse(contents);
-    return messages[id];
+    const id = Math.floor(Math.random() * 1000);
+    messages[id] = { id, message: content };
+    await writeFile('messages.json', JSON.stringify(messages));
+    return id;
   }
-}
+  async find() {
+    const contents = await readFile('messages.json', 'utf8');
+    return JSON.parse(contents);
+  }
+  async findOne(id: string) {
+    console.log(id);
 ```
 ## 23 - Reading and Writing to a Storage File
 ## 24 - Implementing a Service
