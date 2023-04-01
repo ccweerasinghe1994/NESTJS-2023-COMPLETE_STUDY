@@ -2,7 +2,12 @@
 #  Nest Architecture Services and Repositories
 
 ## 21 - Services and Repositories
+
+![alt text](./Assets/images/set-01/39.png)
+![alt text](./Assets/images/set-01/40.png)
+![alt text](./Assets/images/set-01/41.png)
 ## 22 - Implementing a Repository
+
 ## 23 - Reading and Writing to a Storage File
 ## 24 - Implementing a Service
 ## 25 - Manual Testing of the Controller
@@ -12,9 +17,6 @@
 ## 29 - Refactoring to Use Dependency Injection
 ## 30 - Few More Notes on DI
 
-![alt text](./Assets/images/set-01/39.png)
-![alt text](./Assets/images/set-01/40.png)
-![alt text](./Assets/images/set-01/41.png)
 ![alt text](./Assets/images/set-01/42.png)
 ![alt text](./Assets/images/set-01/43.png)
 ![alt text](./Assets/images/set-01/44.png)
