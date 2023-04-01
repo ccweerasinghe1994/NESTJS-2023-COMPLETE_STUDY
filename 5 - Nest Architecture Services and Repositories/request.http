@@ -4,7 +4,7 @@ GET http://localhost:3000/messages
 
 ### get a message by id
 
-GET http://localhost:3000/messages/1
+GET http://localhost:3000/messages/93
 
 ### create a message
 
@@ -12,7 +12,7 @@ POST http://localhost:3000/messages
 content-type: application/json
 
 {
-  "content": "hello world"
+  "content": "text me"
 }
 
 ### create a message invalid content
@@ -21,5 +21,5 @@ POST http://localhost:3000/messages
 content-type: application/json
 
 {
-  "content": 123
+  "content": 93
 }

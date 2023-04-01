@@ -80,13 +80,74 @@ export class MessagesService {
 
 ```
 ## 25 - Manual Testing of the Controller
+![alt text](./Assets/images/set-01/42.png)
+
+\src\messages\messages.controller.ts
+```ts
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { CreateMessageDto } from './dtos/create-message.dto';
+import { MessagesService } from './messages.service';
+@Controller('messages')
+export class MessagesController {
+  messagesService: MessagesService;
+  constructor() {
+    this.messagesService = new MessagesService();
+  }
+  @Get()
+  listMessages() {
+    return this.messagesService.find();
+
+```
+
+let's make some requests to our API
+```ts
+
+### get a message by id
+GET http://localhost:3000/messages/93
+### create a message
+content-type: application/json
+{
+  "content": "text me"
+}
+### create a message invalid content
+content-type: application/json
+{
+  "content": 93
+}
+```
+response
+```json
+{
+  "93": {
+    "id": 93,
+    "message": "hello world"
+  },
+  "528": {
+    "id": 528,
+    "message": "text me"
+  }
+}
+```
+
+this is our json file
+```json
+{
+  "93": {
+    "id": 93,
+    "message": "hello world"
+  },
+  "528": {
+    "id": 528,
+    "message": "text me"
+  }
+}
+```
 ## 26 - Reporting Errors with Exceptions
 ## 27 - Understanding Inversion of Control
 ## 28 - Introduction to Dependency Injection
 ## 29 - Refactoring to Use Dependency Injection
 ## 30 - Few More Notes on DI
 
-![alt text](./Assets/images/set-01/42.png)
 ![alt text](./Assets/images/set-01/43.png)
 ![alt text](./Assets/images/set-01/44.png)
 ![alt text](./Assets/images/set-01/45.png)
