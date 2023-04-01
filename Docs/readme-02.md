@@ -208,15 +208,66 @@ async function bootstrap(): Promise<void> {
 ```
 
 ## 18 - Adding Validation Rules
+add the following packages to the project
+
+```shell
+npm i class-validator class-transformer
+```
+
+[class validator](https://www.npmjs.com/package/class-validator)
+[class transformer](https://www.npmjs.com/package/class-transformer)
+
+
+![alt text](./Assets/images/set-01/33.png)
+![alt text](./Assets/images/set-01/34.png)
+![alt text](./Assets/images/set-01/35.png)
+
+let's create the dto
+
+```ts
+import { IsString } from 'class-validator';
+export class CreateMessageDto {
+  @IsString()
+  content: string;
+}
+
+```
+
+let's use it in the controller
+
+```ts
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { CreateMessageDto } from './dtos/create-message.dto';
+@Controller('messages')
+export class MessagesController {
+  }
+  @Post()
+  createMessage(@Body() body: CreateMessageDto) {
+    console.log(body);
+    return {
+      id: 1,
+```
+
+let's test it 
+
+4 - Validating Request Data with Pipes\request.http
+```http request
+{
+  "content": "hello world"
+}
+### create a message invalid content
+POST http://localhost:3000/messages
+content-type: application/json
+{
+  "content": 123
+}
+```
 
 ## 19 - Behind the Scenes of Validation
 
 ## 20 - How Type Info is Preserved
 
 
-![alt text](./Assets/images/set-01/33.png)
-![alt text](./Assets/images/set-01/34.png)
-![alt text](./Assets/images/set-01/35.png)
 ![alt text](./Assets/images/set-01/36.png)
 ![alt text](./Assets/images/set-01/37.png)
 ![alt text](./Assets/images/set-01/38.png)

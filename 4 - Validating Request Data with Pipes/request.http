@@ -14,3 +14,12 @@ content-type: application/json
 {
   "content": "hello world"
 }
+
+### create a message invalid content
+
+POST http://localhost:3000/messages
+content-type: application/json
+
+{
+  "content": 123
+}
