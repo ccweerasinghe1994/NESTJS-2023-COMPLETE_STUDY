@@ -143,6 +143,52 @@ this is our json file
 }
 ```
 ## 26 - Reporting Errors with Exceptions
+
+let's change the controller to handle the error
+```ts
+r.ts
+import {
+  Body,
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
+} from '@nestjs/common';
+import { CreateMessageDto } from './dtos/create-message.dto';
+import { MessagesService } from './messages.service';
+  }
+  @Get(':id')
+  async getMessage(@Param('id') id: string) {
+    const message = await this.messagesService.findOne(id);
+    if (!message) {
+      return new NotFoundException('message not found');
+    }
+    return message;
+  }
+  @Post()
+```
+
+```http
+### get a message by id
+
+GET http://localhost:3000/messages/931
+
+```
+
+```json
+{
+  "response": {
+    "statusCode": 404,
+    "message": "message not found",
+    "error": "Not Found"
+  },
+  "status": 404,
+  "options": {},
+  "message": "message not found",
+  "name": "NotFoundException"
+}
+```
 ## 27 - Understanding Inversion of Control
 ## 28 - Introduction to Dependency Injection
 ## 29 - Refactoring to Use Dependency Injection
