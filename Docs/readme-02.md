@@ -265,11 +265,13 @@ content-type: application/json
 
 ## 19 - Behind the Scenes of Validation
 
-## 20 - How Type Info is Preserved
-
+class-transformer documentation [🔥 here](https://github.com/typestack/class-transformer#what-is-class-transformer)
 
 ![alt text](./Assets/images/set-01/36.png)
 ![alt text](./Assets/images/set-01/37.png)
+## 20 - How Type Info is Preserved
+
+
 ![alt text](./Assets/images/set-01/38.png)
 ![alt text](./Assets/images/set-01/39.png)
 ![alt text](./Assets/images/set-01/40.png)
