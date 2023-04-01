@@ -270,9 +270,22 @@ class-transformer documentation [🔥 here](https://github.com/typestack/class-t
 ![alt text](./Assets/images/set-01/36.png)
 ![alt text](./Assets/images/set-01/37.png)
 ## 20 - How Type Info is Preserved
+```js
+// We can use the @Body() decorator to access the body of the request. The @Body()
+// decorator will automatically deserialize the JSON body of the request into an
+// instance of the CreateMessageDto class.
 
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_message_dto_1.CreateMessageDto]),
+    __metadata("design:returntype", void 0)
+], MessagesController.prototype, "createMessage", null);
+```
 
 ![alt text](./Assets/images/set-01/38.png)
+
 ![alt text](./Assets/images/set-01/39.png)
 ![alt text](./Assets/images/set-01/40.png)
 ![alt text](./Assets/images/set-01/41.png)
