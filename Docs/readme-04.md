@@ -15,14 +15,27 @@ nest new di
 ```
 
 ## 32 - Generating a Few Files
+
+![alt text](./Assets/images/set-01/62.png)
+![alt text](./Assets/images/set-01/63.png)
+
+```ts
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class PowerService {
+    supplyPower(watts:number) {
+        console.log(`supplying ${watts} of power`)
+    }
+}
+```
+
 ## 33 - Setting Up DI Between Modules
 ## 34 - More on DI Between Modules
 ## 35 - Consuming Multiple Modules
 ## 36 - Modules Wrapup
 
 
-![alt text](./Assets/images/set-01/62.png)
-![alt text](./Assets/images/set-01/63.png)
 ![alt text](./Assets/images/set-01/64.png)
 ![alt text](./Assets/images/set-01/65.png)
 ![alt text](./Assets/images/set-01/66.png)
