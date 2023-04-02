@@ -70,11 +70,49 @@ export class CpuService {
 }
 ```
 ## 34 - More on DI Between Modules
+```ts
+import { Module } from '@nestjs/common';
+import { DiskService } from './disk.service';
+import {PowerModule} from "../power/power.module";
+@Module({
+  providers: [DiskService],
+  imports:[PowerModule]
+})
+export class DiskModule {
+}
+```
+```ts
+import { Injectable } from '@nestjs/common';
+import {PowerService} from "../power/power.service";
+@Injectable()
+export class DiskService {
+    constructor(private powerService:PowerService) {
+    }
+    getData():string{
+        console.log(`drawing 5 of power`);
+        this.powerService.supplyPower(5);
+        return 'data';
+    }
+}
+```
+![alt text](./Assets/images/set-01/67.png)
+
 ## 35 - Consuming Multiple Modules
+```ts
+
+```
+```ts
+
+```
+```ts
+
+```
+```ts
+
+```
 ## 36 - Modules Wrapup
 
 
-![alt text](./Assets/images/set-01/67.png)
 ![alt text](./Assets/images/set-01/68.png)
 ![alt text](./Assets/images/set-01/69.png)
 ![alt text](./Assets/images/set-01/70.png)
