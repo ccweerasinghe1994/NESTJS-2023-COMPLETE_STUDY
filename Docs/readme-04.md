@@ -31,14 +31,49 @@ export class PowerService {
 ```
 
 ## 33 - Setting Up DI Between Modules
+
+![alt text](./Assets/images/set-01/64.png)
+![alt text](./Assets/images/set-01/65.png)
+![alt text](./Assets/images/set-01/66.png)
+
+let's add powerService to the app module as a export
+
+```ts
+import { PowerService } from './power.service';
+@Module({
+  providers: [PowerService],
+  exports: [PowerService],
+})
+export class PowerModule {}
+
+```
+
+let's import the power module in the cpu module
+```ts
+import { Module } from '@nestjs/common';
+import { CpuService } from './cpu.service';
+import {PowerModule} from "../power/power.module";
+@Module({
+  providers: [CpuService],
+  imports:[PowerModule]
+})
+export class CpuModule {}
+```
+
+let's add the cpu PowerService to the cpu service
+```ts
+import { Injectable } from '@nestjs/common';
+import {PowerService} from "../power/power.service";
+@Injectable()
+export class CpuService {
+    constructor(private powerService: PowerService) {}
+}
+```
 ## 34 - More on DI Between Modules
 ## 35 - Consuming Multiple Modules
 ## 36 - Modules Wrapup
 
 
-![alt text](./Assets/images/set-01/64.png)
-![alt text](./Assets/images/set-01/65.png)
-![alt text](./Assets/images/set-01/66.png)
 ![alt text](./Assets/images/set-01/67.png)
 ![alt text](./Assets/images/set-01/68.png)
 ![alt text](./Assets/images/set-01/69.png)
