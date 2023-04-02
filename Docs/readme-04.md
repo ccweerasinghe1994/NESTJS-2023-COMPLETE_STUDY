@@ -98,16 +98,64 @@ export class DiskService {
 ![alt text](./Assets/images/set-01/67.png)
 
 ## 35 - Consuming Multiple Modules
-```ts
 
-```
+DiskModule
 ```ts
+@Module({
+  providers: [DiskService],
+  imports:[PowerModule],
+  exports:[DiskService]
+})
+export class DiskModule {
+}
+```
 
-```
+CpuModule
 ```ts
+@Module({
+  providers: [CpuService],
+  imports:[PowerModule],
+  exports:[CpuService]
+})
+export class CpuModule {}
+```
 
-```
+ComputerModule
 ```ts
+import { Module } from '@nestjs/common';
+import { ComputerController } from './computer.controller';
+import {CpuModule} from "../cpu/cpu.module";
+import {DiskModule} from "../disk/disk.module";
+@Module({
+  controllers: [ComputerController],
+  imports:[CpuModule,DiskModule]
+})
+export class ComputerModule {}
+```
+
+ComputerController
+```ts
+import { Controller, Get } from '@nestjs/common';
+import { CpuService } from '../cpu/cpu.service';
+import { DiskService } from '../disk/disk.service';
+@Controller('computer')
+export class ComputerController {
+  constructor(
+    private cpuService: CpuService,
+    private diskService: DiskService,
+  ) {}
+  @Get()
+  run() {
+    return [this.diskService.getData(), this.cpuService.compute(12, 1)];
+  }
+}
+```
+
+
+```http
+
+# getting messages
+GET localhost:3000/computer
 
 ```
 ## 36 - Modules Wrapup

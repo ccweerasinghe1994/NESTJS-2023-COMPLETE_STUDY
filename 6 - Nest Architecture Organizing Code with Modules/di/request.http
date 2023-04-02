@@ -1,0 +1,5 @@
+
+
+# getting messages
+
+GET localhost:3000/computer
