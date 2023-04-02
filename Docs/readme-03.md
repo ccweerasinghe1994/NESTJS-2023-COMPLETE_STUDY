@@ -205,11 +205,50 @@ GET http://localhost:3000/messages/931
 ![alt text](./Assets/images/set-01/53.png)
 ![alt text](./Assets/images/set-01/54.png)
 ## 29 - Refactoring to Use Dependency Injection
-## 30 - Few More Notes on DI
-
-
 ![alt text](./Assets/images/set-01/55.png)
 ![alt text](./Assets/images/set-01/56.png)
+## 30 - Few More Notes on DI
+
+```ts
+
+import { MessageRepository } from './message.repository';
+import { Injectable } from '@nestjs/common';
+@Injectable()
+export class MessagesService {
+  constructor(public messagesRepository: MessageRepository) {}
+  findOne(id: string) {
+    return this.messagesRepository.findOne(id);
+```
+```ts
+
+@Controller('messages')
+export class MessagesController {
+  constructor(public messagesService: MessagesService) {}
+  @Get()
+  listMessages() {
+```
+```ts
+message.repository.ts
+import { readFile, writeFile } from 'fs/promises';
+import { Injectable } from '@nestjs/common';
+@Injectable()
+export class MessageRepository {
+  async create(content: string) {
+    const contents = await readFile('messages.json', 'utf8');
+```
+```ts
+import { Module } from '@nestjs/common';
+import { MessagesController } from './messages.controller';
+import { MessagesService } from './messages.service';
+import { MessageRepository } from './message.repository';
+@Module({
+  controllers: [MessagesController],
+  providers: [MessagesService, MessageRepository],
+})
+export class MessagesModule {}
+```
+
+
 ![alt text](./Assets/images/set-01/57.png)
 ![alt text](./Assets/images/set-01/58.png)
 ![alt text](./Assets/images/set-01/59.png)
