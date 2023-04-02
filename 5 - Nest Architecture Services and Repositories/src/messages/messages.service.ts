@@ -5,7 +5,7 @@ import { Injectable } from '@nestjs/common';
 export class MessagesService {
   constructor(public messagesRepository: MessageRepository) {}
 
-  findOne(id: string) {
+  findOne(id: number) {
     return this.messagesRepository.findOne(id);
   }
 
