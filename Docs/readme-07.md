@@ -139,12 +139,24 @@ let's add the update method to the user service
 ![alt text](./Assets/images/set-02/5.png)
 
 ## 56 - Removing Users
+
+let's remove the user
+
+```ts
+  async remove(id: number) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    return this.usersRepository.remove(user);
+  }
+```
+![alt text](./Assets/images/set-02/6.png)
 ## 57 - Finding and Filtering Records
 ## 58 - Removing Records
 ## 59 - Updating Records
 ## 60 - A Few Notes on Exceptions
 
-![alt text](./Assets/images/set-02/6.png)
 ![alt text](./Assets/images/set-02/7.png)
 ![alt text](./Assets/images/set-02/8.png)
 ![alt text](./Assets/images/set-02/9.png)
