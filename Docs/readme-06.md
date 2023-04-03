@@ -174,12 +174,14 @@ final db structure
 ![alt text](./Assets/images/set-01/88.png)
 ![alt text](./Assets/images/set-01/89.png)
 ## 46 - One Quick Note on Repositories
-## 47 - A Few Extra Routes
-## 48 - Setting Up Body Validation
-## 49 - Manual Route Testing
+
 ![alt text](./Assets/images/set-01/90.png)
 ![alt text](./Assets/images/set-01/91.png)
 ![alt text](./Assets/images/set-01/92.png)
+## 47 - A Few Extra Routes
+## 48 - Setting Up Body Validation
+## 49 - Manual Route Testing
+
 ![alt text](./Assets/images/set-01/93.png)
 ![alt text](./Assets/images/set-01/94.png)
 ![alt text](./Assets/images/set-01/95.png)
