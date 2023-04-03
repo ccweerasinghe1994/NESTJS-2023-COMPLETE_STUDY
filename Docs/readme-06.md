@@ -209,6 +209,8 @@ export class CreateUserDto {
 }
 ```
 
+
+## 48 - Setting Up Body Validation
 let's update the user controller
 ```ts
 
@@ -243,8 +245,18 @@ async function bootstrap() { // define the bootstrap() function as an asynchrono
 }
 bootstrap(); // call the bootstrap() function
 ```
-## 48 - Setting Up Body Validation
+
 ## 49 - Manual Route Testing
+let's test the validation
+```http
+### CREATE A NEW USER
+POST localhost:3000/auth/signup
+content-type: application/json
+{
+  "username": "abc@email.com",
+  "password": "password"
+}
+```
 ![alt text](./Assets/images/set-01/97.png)
 ![alt text](./Assets/images/set-01/98.png)
 ![alt text](./Assets/images/set-01/99.png)
