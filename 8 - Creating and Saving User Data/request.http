@@ -15,3 +15,12 @@ GET localhost:3000/auth?email=abc@email.com
 
 ### DELETE A USER
 DELETE localhost:3000/auth/8
+
+### UPDATE A USER
+PATCH localhost:3000/auth/9
+content-type: application/json
+
+{
+  "email": "chamara@gmail.com",
+  "password": "111111"
+}

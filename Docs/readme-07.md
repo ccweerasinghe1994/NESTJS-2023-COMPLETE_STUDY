@@ -259,10 +259,79 @@ Keep-Alive: timeout=5
 Response code: 200 (OK); Time: 86ms (86 ms); Content length: 46 bytes (46 B)
 ```
 ## 59 - Updating Records
-## 60 - A Few Notes on Exceptions
 
 ![alt text](./Assets/images/set-02/7.png)
 ![alt text](./Assets/images/set-02/8.png)
+
+small change in create user dto 
+```ts
+export class CreateUserDto {
+  @IsEmail()
+  email: string;
+  @IsString()
+  password: string;
+```
+
+update user dto
+```ts
+
+import { IsEmail, IsOptional, IsString } from 'class-validator';
+export class UpdateUserDto {
+  @IsOptional()
+  @IsEmail()
+  email: string;
+  @IsOptional()
+  @IsString()
+  password: string;
+}
+```
+
+user controller 
+
+```ts
+
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UsersService } from './users.service';
+import { UpdateUserDto } from './dtos/update-user.dto';
+@Controller('/auth')
+export class UsersController {
+  @Post('/signup')
+  createUser(@Body() body: CreateUserDto) {
+    const { email, password } = body;
+    return this.usersService.create(email, password);
+  }
+  @Get('/:id')
+  delete(@Param('id') id: string) {
+    return this.usersService.remove(parseInt(id));
+  }
+  @Patch('/:id')
+  update(@Param('id') id: string, @Body() body: UpdateUserDto) {
+    return this.usersService.update(parseInt(id), body);
+  }
+}
+```
+let's test this
+
+```http
+### DELETE A USER
+DELETE localhost:3000/auth/8
+### UPDATE A USER
+PATCH localhost:3000/auth/9
+content-type: application/json
+{
+  "email": "chamara@gmail.com",
+  "password": "111111"
+}
+```
+## 60 - A Few Notes on Exceptions
+
 ![alt text](./Assets/images/set-02/9.png)
 ![alt text](./Assets/images/set-02/10.png)
 ![alt text](./Assets/images/set-02/11.png)
