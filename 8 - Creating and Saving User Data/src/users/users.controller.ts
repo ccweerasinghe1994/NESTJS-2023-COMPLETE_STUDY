@@ -14,6 +14,6 @@ export class UsersController {
 
   @Get('/users')
   findUsers() {
-    return this.usersService.findAll();
+    // return this.usersService.find();
   }
 }

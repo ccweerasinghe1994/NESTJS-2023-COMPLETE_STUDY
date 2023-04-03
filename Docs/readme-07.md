@@ -103,6 +103,21 @@ export class User {
 ![alt text](./Assets/images/set-02/1.png)
 ![alt text](./Assets/images/set-02/2.png)
 ## 54 - Querying for Data 
+let's add the find and findOne methods to the user service
+
+```ts
+  find(email: string) {
+    return this.usersRepository.find({
+      where: { email },
+    });
+  }
+
+  findOne(id: number) {
+    return this.usersRepository.findOne({
+      where: { id },
+    });
+  }
+```
 ## 55 - Updating Data
 ## 56 - Removing Users
 ## 57 - Finding and Filtering Records

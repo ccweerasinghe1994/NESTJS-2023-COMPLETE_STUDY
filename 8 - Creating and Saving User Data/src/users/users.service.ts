@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, FindManyOptions } from 'typeorm';
 import { User } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -15,7 +15,15 @@ export class UsersService {
     return this.usersRepository.save(user);
   }
 
-  findAll() {
-    return this.usersRepository.find();
+  find(email: string) {
+    return this.usersRepository.find({
+      where: { email },
+    });
+  }
+
+  findOne(id: number) {
+    return this.usersRepository.findOne({
+      where: { id },
+    });
   }
 }
