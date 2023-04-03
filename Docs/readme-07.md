@@ -153,6 +153,84 @@ let's remove the user
 ```
 ![alt text](./Assets/images/set-02/6.png)
 ## 57 - Finding and Filtering Records
+let's add find and findAllUsers methods
+
+```ts
+ @Get('/:id')
+  findUser(@Param('id') id: string) {
+    return this.usersService.findOne(parseInt(id));
+  }
+
+  @Get()
+  findAllUsers(@Query('email') email: string) {
+    return this.usersService.find(email);
+  }
+```
+
+test this 
+```http
+
+### FIND A USER
+GET localhost:3000/auth/8
+
+### FIND ALL USER
+GET localhost:3000/auth?email=abc@email.com
+
+```
+
+```http
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 113
+ETag: W/"71-mNUTezQZ+dgidAMK3STdVnt1paE"
+Date: Mon, 03 Apr 2023 07:58:29 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+[
+  {
+    "id": 10,
+    "email": "abc@email.com",
+    "password": "password"
+  },
+  {
+    "id": 11,
+    "email": "abc@email.com",
+    "password": "password"
+  }
+]
+Response file saved.
+> 2023-04-03T132829.200.json
+
+Response code: 200 (OK); Time: 27ms (27 ms); Content length: 113 bytes (113 B)
+
+```
+
+```http
+GET http://localhost:3000/auth/8
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 53
+ETag: W/"35-NVuJhBso/XBQ4ucScERtgPiglpg"
+Date: Mon, 03 Apr 2023 07:51:59 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{
+  "id": 8,
+  "email": "abc@email.lk",
+  "password": "password"
+}
+Response file saved.
+> 2023-04-03T132159.200.json
+
+Response code: 200 (OK); Time: 9ms (9 ms); Content length: 53 bytes (53 B)
+
+```
 ## 58 - Removing Records
 ## 59 - Updating Records
 ## 60 - A Few Notes on Exceptions
