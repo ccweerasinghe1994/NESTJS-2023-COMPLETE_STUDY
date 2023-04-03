@@ -145,17 +145,17 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/user.entity';
-import { Report } from './reports/report.entity';
+import { TypeOrmModule } from '@nestjs/typeorm'; // <-- Import TypeOrmModule
+import { User } from './users/user.entity'; // <-- Import User entity
+import { Report } from './reports/report.entity'; // <-- Import Report entity
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
-      entities: [User,Report],
-      synchronize: true,
+  imports: [ // the imports property defines the modules that are imported by this module
+    TypeOrmModule.forRoot({ // this module is imported from TypeOrmModule
+      type: 'sqlite', // the database type
+      database: 'db.sqlite', // the database name
+      entities: [User,Report], // the entities that are part of this module
+      synchronize: true, // synchronize the database with the entities
     }),
     UsersModule,
     ReportsModule,
@@ -179,13 +179,72 @@ final db structure
 ![alt text](./Assets/images/set-01/91.png)
 ![alt text](./Assets/images/set-01/92.png)
 ## 47 - A Few Extra Routes
-## 48 - Setting Up Body Validation
-## 49 - Manual Route Testing
 
 ![alt text](./Assets/images/set-01/93.png)
 ![alt text](./Assets/images/set-01/94.png)
 ![alt text](./Assets/images/set-01/95.png)
 ![alt text](./Assets/images/set-01/96.png)
+
+let's add class-validator
+```shell
+ npm i class-validator class-transformer 
+```
+
+let's add class-transformer
+```shell
+ npm i class-transformer 
+```
+
+let's create the user dto
+```ts
+
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+export class CreateUserDto {
+  // @IsEmail() decorator will validate if the input is a valid email address or not
+  @IsEmail()
+  username: string;
+  // @IsString() decorator will validate if the input is a string or not
+  @IsString()
+  password: string;
+}
+```
+
+let's update the user controller
+```ts
+
+import { Body, Controller, Post } from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
+@Controller('/auth')
+export class UsersController {
+  @Post('/signup')
+  createUser(@Body() body: CreateUserDto) {
+    // @Body() is a decorator that tells Nest to extract the request body and pass it as an argument to this method.
+    // The argument's name is 'body' and its type is CreateUserDto.
+    // @Body() is a built-in decorator that tells Nest to extract the request body and pass it as an argument to this method.
+    console.log(body);
+  }
+}
+```
+
+let's add the validation pipe
+```ts
+import { NestFactory } from '@nestjs/core'; // NestFactory is used to create an instance of Nest application to which we can attach modules
+import { AppModule } from './app.module'; // import the AppModule from the app.module.ts
+import { ValidationPipe } from '@nestjs/common'; // import the ValidationPipe from the @nestjs/common library
+
+async function bootstrap() { // define the bootstrap() function as an asynchronous function
+  const app = await NestFactory.create(AppModule); // create an instance of the Nest application and pass the AppModule as an argument to the create() function
+  app.useGlobalPipes( // use the useGlobalPipes() method to attach the ValidationPipe to the application
+    new ValidationPipe({ // create a new instance of the ValidationPipe
+      whitelist: true, // enable the whitelist property to only allow properties that are defined in the DTO
+    }),
+  );
+  await app.listen(3000); // start the server and listen on port 3000
+}
+bootstrap(); // call the bootstrap() function
+```
+## 48 - Setting Up Body Validation
+## 49 - Manual Route Testing
 ![alt text](./Assets/images/set-01/97.png)
 ![alt text](./Assets/images/set-01/98.png)
 ![alt text](./Assets/images/set-01/99.png)
