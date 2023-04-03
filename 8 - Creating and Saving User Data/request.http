@@ -6,3 +6,6 @@ content-type: application/json
   "username": "abc@email.com",
   "password": "password"
 }
+
+### FIND ALL USER
+GET localhost:3000/auth/users
