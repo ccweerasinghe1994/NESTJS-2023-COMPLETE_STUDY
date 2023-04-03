@@ -1,4 +1,4 @@
-# 8 - Persisting Data with TypeORM
+# Persisting Data with TypeORM
 
 ## 41 - Persistent Data with Nest
 
