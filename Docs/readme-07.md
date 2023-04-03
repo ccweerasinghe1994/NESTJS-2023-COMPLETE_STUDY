@@ -69,6 +69,39 @@ curl -X POST \
 ![alt text](./Assets/images/set-01/99.png)
 ![alt text](./Assets/images/set-01/100.png)
 ## 52 - More on Create vs Save
+let's add logs to the create and save methods
+
+```ts
+import {
+  AfterInsert,
+  AfterRemove,
+  AfterUpdate,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+@Entity()
+export class User {
+  email: string;
+  @Column()
+  password: string;
+  @AfterInsert()
+  logInsert() {
+    console.log('Inserted user with id', this.id);
+  }
+  @AfterUpdate()
+  logUpdate() {
+    console.log('Updated user with id', this.id);
+  }
+  @AfterRemove()
+  logRemove() {
+    console.log('Removed user with id', this.id);
+  }
+}
+```
+
+![alt text](./Assets/images/set-02/1.png)
+![alt text](./Assets/images/set-02/2.png)
 ## 54 - Querying for Data 
 ## 55 - Updating Data
 ## 56 - Removing Users
@@ -76,9 +109,6 @@ curl -X POST \
 ## 58 - Removing Records
 ## 59 - Updating Records
 ## 60 - A Few Notes on Exceptions
-
-![alt text](./Assets/images/set-02/1.png)
-![alt text](./Assets/images/set-02/2.png)
 ![alt text](./Assets/images/set-02/3.png)
 ![alt text](./Assets/images/set-02/4.png)
 ![alt text](./Assets/images/set-02/5.png)
