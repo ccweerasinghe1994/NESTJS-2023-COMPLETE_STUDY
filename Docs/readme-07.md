@@ -119,14 +119,31 @@ let's add the find and findOne methods to the user service
   }
 ```
 ## 55 - Updating Data
+let's add the update method to the user service
+
+```ts
+  
+  async update(id: number, attrs: Partial<User>) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    Object.assign(user, attrs);
+    return this.usersRepository.save(user);
+  }
+}
+```
+
+![alt text](./Assets/images/set-02/3.png)
+![alt text](./Assets/images/set-02/4.png)
+![alt text](./Assets/images/set-02/5.png)
+
 ## 56 - Removing Users
 ## 57 - Finding and Filtering Records
 ## 58 - Removing Records
 ## 59 - Updating Records
 ## 60 - A Few Notes on Exceptions
-![alt text](./Assets/images/set-02/3.png)
-![alt text](./Assets/images/set-02/4.png)
-![alt text](./Assets/images/set-02/5.png)
+
 ![alt text](./Assets/images/set-02/6.png)
 ![alt text](./Assets/images/set-02/7.png)
 ![alt text](./Assets/images/set-02/8.png)
