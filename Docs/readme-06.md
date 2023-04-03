@@ -71,17 +71,18 @@ export class User {
 
 user module
 ```ts
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'; // import typeorm decorators
+import { Module } from '@nestjs/common';
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './user.entity';
 
-@Entity() // decorator to mark this class as the entity
-export class User {
-  @PrimaryGeneratedColumn() // decorator to mark this column as the primary key
-  id: number;
-  @Column() // decorator to mark this column as a column in the database
-  email: string;
-  @Column()
-  password: string;
-}
+@Module({
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UsersController],
+  providers: [UsersService],
+})
+export class UsersModule {}
 ``` 
 
 app module
@@ -107,6 +108,65 @@ import { User } from './users/user.entity';
 ```
 
 ## 44 - Viewing a DBs Contents
+report entity
+```ts
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity()
+export class Report {
+  @PrimaryGeneratedColumn()
+  id: number;
+  @Column()
+  price: number;
+}
+```
+
+report module
+```ts
+import { Module } from '@nestjs/common';
+import { ReportsController } from './reports.controller';
+import { ReportsService } from './reports.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Report } from './report.entity';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([Report])],
+  controllers: [ReportsController],
+  providers: [ReportsService],
+})
+export class ReportsModule {}
+
+```
+
+add to app module
+```ts
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { ReportsModule } from './reports/reports.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './users/user.entity';
+import { Report } from './reports/report.entity';
+
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'db.sqlite',
+      entities: [User,Report],
+      synchronize: true,
+    }),
+    UsersModule,
+    ReportsModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+final db structure
+![alt text](./Assets/images/set-01/86.png)
 ## 45 - Understanding TypeORM Decorators
 ## 46 - One Quick Note on Repositories
 ## 47 - A Few Extra Routes
@@ -114,7 +174,6 @@ import { User } from './users/user.entity';
 ## 49 - Manual Route Testing
 
 
-![alt text](./Assets/images/set-01/86.png)
 ![alt text](./Assets/images/set-01/87.png)
 ![alt text](./Assets/images/set-01/88.png)
 ![alt text](./Assets/images/set-01/89.png)
