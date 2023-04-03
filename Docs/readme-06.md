@@ -257,7 +257,3 @@ content-type: application/json
   "password": "password"
 }
 ```
-![alt text](./Assets/images/set-01/97.png)
-![alt text](./Assets/images/set-01/98.png)
-![alt text](./Assets/images/set-01/99.png)
-![alt text](./Assets/images/set-01/100.png)
