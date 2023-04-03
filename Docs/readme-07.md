@@ -232,6 +232,32 @@ Response code: 200 (OK); Time: 9ms (9 ms); Content length: 53 bytes (53 B)
 
 ```
 ## 58 - Removing Records
+```ts
+  @Delete('/:id')
+  removeUser(@Param('id') id: string) {
+    return this.usersService.remove(parseInt(id));
+  }
+```
+test this 
+```http
+DELETE http://localhost:3000/auth/8
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 46
+ETag: W/"2e-LC3ziy5Zc44zsTsx4R9e1Jqr2EA"
+Date: Mon, 03 Apr 2023 10:16:34 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{
+  "email": "abc@email.lk",
+  "password": "password"
+}
+
+Response code: 200 (OK); Time: 86ms (86 ms); Content length: 46 bytes (46 B)
+```
 ## 59 - Updating Records
 ## 60 - A Few Notes on Exceptions
 

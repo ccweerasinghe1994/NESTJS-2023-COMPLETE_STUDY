@@ -12,3 +12,6 @@ GET localhost:3000/auth/8
 
 ### FIND ALL USER
 GET localhost:3000/auth?email=abc@email.com
+
+### DELETE A USER
+DELETE localhost:3000/auth/8
