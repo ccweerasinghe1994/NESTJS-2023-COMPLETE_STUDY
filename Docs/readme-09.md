@@ -594,16 +594,48 @@ import { CurrentUserInterceptor } from './interceptors/current-user.interceptor'
 export class UsersModule {}
 ```
 ## 88 - Preventing Access with Authentication Guards
-
-
-
-
-
-
-
 ![alt text](./Assets/images/set-02/60.png)
 ![alt text](./Assets/images/set-02/61.png)
 ![alt text](./Assets/images/set-02/62.png)
+let's add the auth guard
+
+src\guards\auth.guard.ts
+```ts
+import { CanActivate, ExecutionContext } from '@nestjs/common';
+export class AuthGuard implements CanActivate {
+  canActivate(context: ExecutionContext): boolean {
+    const request = context.switchToHttp().getRequest();
+    return request.session?.userId;
+  }
+}
+```
+add it to the controller
+```ts
+  Post,
+  Query,
+  Session,
+  UseGuards,
+} from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UsersService } from './users.service';
+import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { User } from './user.entity';
+import { AuthGuard } from '../guards/auth.guard';
+@Controller('/auth')
+@Serialize(UserDto)
+  // }
+  @Get('/whoami')
+  @UseGuards(AuthGuard)
+  async getMe(@CurrentUser() user: User) {
+    return user;
+  }
+```
+
+
+
+
+
 ![alt text](./Assets/images/set-02/63.png)
 ![alt text](./Assets/images/set-02/64.png)
 ![alt text](./Assets/images/set-02/65.png)
