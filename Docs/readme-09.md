@@ -254,6 +254,29 @@ async function bootstrap() {
 
 
 ## 77 - Changing and Fetching Session Data
+```ts
+  @Get('/colors/:color')
+  setColor(@Param('color') color: string, @Session() session: any) {
+    session.color = color;
+  }
+
+  @Get('/colors')
+  getColor(@Session() session: any) {
+    return session.color;
+  }
+
+```
+
+we can test it
+
+```http
+### SET A COLOR
+GET localhost:3000/auth/colors/blue
+
+### GET A COLOR
+GET localhost:3000/auth/colors
+```
+
 ## 78 - Signing in a User
 ## 79 - Getting the Current User
 ## 80 - Signing Out a User
