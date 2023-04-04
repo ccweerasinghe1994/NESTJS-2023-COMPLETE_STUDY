@@ -278,6 +278,55 @@ GET localhost:3000/auth/colors
 ```
 
 ## 78 - Signing in a User
+
+![alt text](./Assets/images/set-02/51.png)
+
+let's set the cookie session in the user controller
+```ts
+
+  Patch,
+  Post,
+  Query,
+  Session,
+} from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UsersService } from './users.service';
+  ) {}
+  @Post('/signin')
+  async signIn(@Body() body: CreateUserDto, @Session() session: any) {
+    const { email, password } = body;
+    const user = await this.authService.signIn(email, password);
+    session.userId = user.id;
+    return user;
+  }
+  @Post('/signup')
+  async createUser(@Body() body: CreateUserDto, @Session() session: any) {
+    const { email, password } = body;
+    const user = await this.authService.signUp(email, password);
+    session.userId = user.id;
+    return user;
+  }
+  @Get('/:id')
+```
+
+let's test it
+
+```http
+### SIGN IN AS A NEW USER
+POST localhost:3000/auth/signup
+content-type: application/json
+  "password": "password"
+}
+### SIGN UP AS A EXSISTING USER
+POST localhost:3000/auth/signin
+content-type: application/json
+{
+  "email": "chamara1aqq@gmail.com",
+  "password": "password"
+}
+### FIND A USER
+GET localhost:3000/auth/9
+```
 ## 79 - Getting the Current User
 ## 80 - Signing Out a User
 ## 81 - Two Automation Tools
@@ -291,7 +340,6 @@ GET localhost:3000/auth/colors
 
 
 
-![alt text](./Assets/images/set-02/51.png)
 ![alt text](./Assets/images/set-02/52.png)
 ![alt text](./Assets/images/set-02/53.png)
 ![alt text](./Assets/images/set-02/54.png)

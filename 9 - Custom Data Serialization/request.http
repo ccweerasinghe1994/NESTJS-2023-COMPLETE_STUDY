@@ -1,11 +1,21 @@
-### CREATE A NEW USER
+### SIGN IN AS A NEW USER
 POST localhost:3000/auth/signup
+content-type: application/json
+
+{
+  "email": "chamara1aqqq@gmail.com",
+  "password": "password"
+}
+
+### SIGN UP AS A EXSISTING USER
+POST localhost:3000/auth/signin
 content-type: application/json
 
 {
   "email": "chamara1aqq@gmail.com",
   "password": "password"
 }
+
 
 ### FIND A USER
 GET localhost:3000/auth/9
