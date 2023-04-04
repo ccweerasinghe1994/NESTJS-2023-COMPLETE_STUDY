@@ -421,6 +421,40 @@ test it
 ![alt text](./Assets/images/set-02/52.png)
 ![alt text](./Assets/images/set-02/53.png)
 ## 82 - Custom Param Decorators
+
+let's create a new decorator to get the current user
+```ts
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+export const CurrentUser = createParamDecorator(
+  (data: any, context: ExecutionContext) => {
+    return 'Hello World';
+  },
+);
+```
+
+do a small change to the controller
+```ts
+  import { Serialize } from '../interceptors/serialize.interceptors';
+import { UserDto } from './dtos/user.dto';
+import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators/current-user.decorator';
+@Controller('/auth')
+@Serialize(UserDto)
+    private authService: AuthService,
+  ) {}
+  // @Get('/whoami')
+  // async getMe(@Session() session: any) {
+  //   if (!session.userId) {
+  //     throw new NotFoundException('Not Authenticated');
+  //   }
+  //   return this.usersService.findOne(session.userId);
+  // }
+  @Get('/whoami')
+  async getMe(@CurrentUser() user: string) {
+    return user;
+  }
+
+```
 ## 83 - Why a Decorator and Interceptor
 ## 84 - Communicating from Interceptor to Decorator
 ## 86 - Connecting an Interceptor to Dependency Injection
