@@ -205,6 +205,43 @@ export class UsersController {
     console.log('Fetching user...');
 ```
 ## 66 - Wrapping the Interceptor in a Decorator
+let's create a decorator for the interceptor
+```ts
+import {
+  CallHandler,
+  ExecutionContext,
+  NestInterceptor,
+  UseInterceptors,
+} from '@nestjs/common';
+import { map, Observable } from 'rxjs';
+import { plainToInstance } from 'class-transformer';
+export function Serialize(dto: any) {
+  return UseInterceptors(new SerializeInterceptors(dto));
+}
+export class SerializeInterceptors implements NestInterceptor {
+  constructor(private dto: any) {}
+
+```
+
+and use it in the user controller
+```ts
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UsersService } from './users.service';
+import { UpdateUserDto } from './dtos/update-user.dto';
+import { Serialize } from '../interceptors/serialize.interceptors';
+import { UserDto } from './dtos/user.dto';
+@Controller('/auth')
+    return this.usersService.create(email, password);
+  }
+  @Serialize(UserDto)
+  @Get('/:id')
+  findUser(@Param('id') id: string) {
+    console.log('Fetching user...');
+```
 ## 67 - ControllerWide Serialization
 ## 68 - A Bit of Type Safety Around Serialize
 
