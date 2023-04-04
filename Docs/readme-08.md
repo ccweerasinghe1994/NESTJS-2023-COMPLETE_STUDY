@@ -72,8 +72,106 @@ export class UsersController {
     return this.usersService.findOne(parseInt(id));
   }
 ```
+```text
+i am running before the handler ExecutionContextHost {
+  args: [
+    IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      socket: [Socket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: false,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      aborted: false,
+      upgrade: false,
+      url: '/auth/9',
+      method: 'GET',
+      statusCode: null,
+      statusMessage: null,
+      client: [Socket],
+      _consuming: false,
+      _dumped: false,
+      next: [Function: next],
+      baseUrl: '',
+      originalUrl: '/auth/9',
+      _parsedUrl: [Url],
+      params: [Object],
+      query: {},
+      res: [ServerResponse],
+      body: {},
+      route: [Route],
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 8,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    ServerResponse {
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(kUniqueHeaders)]: null
+    },
+    [Function: next]
+  ],
+  constructorRef: [class UsersController],
+  handler: [Function: findUser],
+  contextType: 'http'
+}
+Fetching user...
+i am running before the response is sent out User { id: 9, email: 'chamara@gmail.com', password: '111111' }
 
+```
 ## 64 - Serialization in the Interceptor
+this is what we are going to do
+![alt text](./Assets/images/set-02/21.png)
+
+let's create a dto for the user
+```ts
+import { Expose } from 'class-transformer';
+export class UserDto {
+  @Expose()
+  id: number;
+  @Expose()
+  email: string;
+}
+```
+
+let's add the dto to the interceptor
+```ts
+import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
+import { map, Observable } from 'rxjs';
+import { plainToInstance } from 'class-transformer';
+import { UserDto } from '../users/dtos/user.dto';
+export class SerializeInterceptors implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    // Run something before a request is handled by the request handler
+    // The CallHandler is a function that we call to actually run the request handler
+    return next.handle().pipe(
+      map((data: any) => {
+        // data here is the data we return from the controller
+        // UserDto is the class we want to transform the data into
+        return plainToInstance(UserDto, data, {
+          excludeExtraneousValues: true,
+        });
+      }),
+    );
+  }
+```
+
 ## 65 - Customizing the Interceptors DTO
 ## 66 - Wrapping the Interceptor in a Decorator
 ## 67 - ControllerWide Serialization
@@ -83,7 +181,6 @@ export class UsersController {
 
 
 
-![alt text](./Assets/images/set-02/21.png)
 
 ![alt text](./Assets/images/set-02/22.png)
 ![alt text](./Assets/images/set-02/23.png)
