@@ -60,6 +60,22 @@ export class AuthService {
 }
 ```
 ## 72 - Optional Understanding Password Hashing
+![alt text](./Assets/images/set-02/31.png)
+![alt text](./Assets/images/set-02/32.png)
+![alt text](./Assets/images/set-02/33.png)
+![alt text](./Assets/images/set-02/34.png)
+![alt text](./Assets/images/set-02/35.png)
+![alt text](./Assets/images/set-02/36.png)
+![alt text](./Assets/images/set-02/37.png)
+![alt text](./Assets/images/set-02/38.png)
+![alt text](./Assets/images/set-02/39.png)
+![alt text](./Assets/images/set-02/40.png)
+![alt text](./Assets/images/set-02/41.png)
+![alt text](./Assets/images/set-02/42.png)
+![alt text](./Assets/images/set-02/43.png)
+![alt text](./Assets/images/set-02/44.png)
+![alt text](./Assets/images/set-02/45.png)
+![alt text](./Assets/images/set-02/46.png)
 ## 73 - Salting and Hashing the Password
 ## 74 - Creating a User
 ## 75 - Handling User Sign In
@@ -78,22 +94,7 @@ export class AuthService {
 
 
 
-![alt text](./Assets/images/set-02/31.png)
-![alt text](./Assets/images/set-02/32.png)
-![alt text](./Assets/images/set-02/33.png)
-![alt text](./Assets/images/set-02/34.png)
-![alt text](./Assets/images/set-02/35.png)
-![alt text](./Assets/images/set-02/36.png)
-![alt text](./Assets/images/set-02/37.png)
-![alt text](./Assets/images/set-02/38.png)
-![alt text](./Assets/images/set-02/39.png)
-![alt text](./Assets/images/set-02/40.png)
-![alt text](./Assets/images/set-02/41.png)
-![alt text](./Assets/images/set-02/42.png)
-![alt text](./Assets/images/set-02/43.png)
-![alt text](./Assets/images/set-02/44.png)
-![alt text](./Assets/images/set-02/45.png)
-![alt text](./Assets/images/set-02/46.png)
+
 ![alt text](./Assets/images/set-02/47.png)
 ![alt text](./Assets/images/set-02/48.png)
 ![alt text](./Assets/images/set-02/49.png)
