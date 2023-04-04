@@ -8,7 +8,7 @@ content-type: application/json
 }
 
 ### FIND A USER
-GET localhost:3000/auth/8
+GET localhost:3000/auth/9
 
 ### FIND ALL USER
 GET localhost:3000/auth?email=abc@email.com

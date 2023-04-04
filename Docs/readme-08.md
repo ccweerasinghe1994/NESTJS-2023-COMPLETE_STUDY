@@ -1,7 +1,14 @@
 # Custom Data Serialization
 ## 61 - Excluding Response Properties 
+![alt text](./Assets/images/set-02/10.png)
+![alt text](./Assets/images/set-02/11.png)
+![alt text](./Assets/images/set-02/12.png)
+![alt text](./Assets/images/set-02/13.png)
+![alt text](./Assets/images/set-02/14.png)
 
 ## 62 - Solution to Serialization
+![alt text](./Assets/images/set-02/15.png)
+![alt text](./Assets/images/set-02/16.png)
 ## 63 - How to Build Interceptors
 ## 64 - Serialization in the Interceptor
 ## 65 - Customizing the Interceptors DTO
@@ -9,13 +16,10 @@
 ## 67 - ControllerWide Serialization
 ## 68 - A Bit of Type Safety Around Serialize
 
-![alt text](./Assets/images/set-02/10.png)
-![alt text](./Assets/images/set-02/11.png)
-![alt text](./Assets/images/set-02/12.png)
-![alt text](./Assets/images/set-02/13.png)
-![alt text](./Assets/images/set-02/14.png)
-![alt text](./Assets/images/set-02/15.png)
-![alt text](./Assets/images/set-02/16.png)
+
+
+
+
 ![alt text](./Assets/images/set-02/17.png)
 ![alt text](./Assets/images/set-02/18.png)
 ![alt text](./Assets/images/set-02/19.png)
