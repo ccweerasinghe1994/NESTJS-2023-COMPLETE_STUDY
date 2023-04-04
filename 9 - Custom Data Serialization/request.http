@@ -16,6 +16,8 @@ content-type: application/json
   "password": "password"
 }
 
+### SIGN OUT
+POST localhost:3000/auth/signout
 
 ### FIND A USER
 GET localhost:3000/auth/9

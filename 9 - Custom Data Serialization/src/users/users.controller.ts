@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -27,7 +28,7 @@ export class UsersController {
   @Get('/whoami')
   async getMe(@Session() session: any) {
     if (!session.userId) {
-      return null;
+      throw new NotFoundException('Not Authenticated');
     }
     return this.usersService.findOne(session.userId);
   }
@@ -46,6 +47,11 @@ export class UsersController {
     const user = await this.authService.signUp(email, password);
     session.userId = user.id;
     return user;
+  }
+
+  @Post('/signout')
+  async signOut(@Session() session: any) {
+    session.userId = null;
   }
 
   @Get('/:id')

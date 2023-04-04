@@ -351,6 +351,72 @@ and test it
 GET localhost:3000/auth/whoami
 ```
 ## 80 - Signing Out a User
+return null if the id is not defined
+```ts
+
+  async findOne(id: number) {
+    if (!id) {
+      return null;
+    }
+    const user = await this.usersRepository.findOne({
+      where: { id },
+    });
+```
+
+implement the sign out
+```ts
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  Patch,
+  Post,
+  @Get('/whoami')
+  async getMe(@Session() session: any) {
+    if (!session.userId) {
+      throw new NotFoundException('Not Authenticated');
+    }
+    return this.usersService.findOne(session.userId);
+  }
+    return user;
+  }
+  @Post('/signout')
+  async signOut(@Session() session: any) {
+    session.userId = null;
+  }
+  @Get('/:id')
+  findUser(@Param('id') id: string) {
+    return this.usersService.findOne(parseInt(id));
+```
+
+test it
+
+```http
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  Patch,
+  Post,
+  @Get('/whoami')
+  async getMe(@Session() session: any) {
+    if (!session.userId) {
+      throw new NotFoundException('Not Authenticated');
+    }
+    return this.usersService.findOne(session.userId);
+  }
+    return user;
+  }
+  @Post('/signout')
+  async signOut(@Session() session: any) {
+    session.userId = null;
+  }
+  @Get('/:id')
+  findUser(@Param('id') id: string) {
+    return this.usersService.findOne(parseInt(id));
+```
 ## 81 - Two Automation Tools
 ## 82 - Custom Param Decorators
 ## 83 - Why a Decorator and Interceptor
