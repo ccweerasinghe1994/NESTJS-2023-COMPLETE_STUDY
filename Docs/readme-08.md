@@ -10,6 +10,69 @@
 ![alt text](./Assets/images/set-02/15.png)
 ![alt text](./Assets/images/set-02/16.png)
 ## 63 - How to Build Interceptors
+![alt text](./Assets/images/set-02/17.png)
+![alt text](./Assets/images/set-02/18.png)
+![alt text](./Assets/images/set-02/19.png)
+![alt text](./Assets/images/set-02/20.png)
+
+first undo the prevoius changes remove the exclude from the user entity
+```ts
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+@Entity()
+export class User {
+  id: number;
+  @Column()
+  email: string;
+  @Column()
+  password: string;
+```
+
+let's build a custom interceptor to exclude the password from the response
+```ts
+
+import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
+import { map, Observable } from 'rxjs';
+export class SerializeInterceptors implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    // Run something before the request is handled by the request handler
+    console.log('i am running before the handler', context);
+    // Run something before a request is handled by the request handler
+    return next.handle().pipe(
+      map((data: any) => {
+        // Run something before the response is sent out
+        console.log('i am running before the response is sent out', data);
+        return { data };
+      }),
+    );
+  }
+}
+```
+and use it in the user controller
+```ts
+
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UsersService } from './users.service';
+import { UpdateUserDto } from './dtos/update-user.dto';
+import { SerializeInterceptors } from '../interceptors/serialize.interceptors';
+@Controller('/auth')
+export class UsersController {
+    return this.usersService.create(email, password);
+  }
+  @UseInterceptors(SerializeInterceptors)
+  @Get('/:id')
+  findUser(@Param('id') id: string) {
+    console.log('Fetching user...');
+    return this.usersService.findOne(parseInt(id));
+  }
+```
+
 ## 64 - Serialization in the Interceptor
 ## 65 - Customizing the Interceptors DTO
 ## 66 - Wrapping the Interceptor in a Decorator
@@ -20,11 +83,8 @@
 
 
 
-![alt text](./Assets/images/set-02/17.png)
-![alt text](./Assets/images/set-02/18.png)
-![alt text](./Assets/images/set-02/19.png)
-![alt text](./Assets/images/set-02/20.png)
 ![alt text](./Assets/images/set-02/21.png)
+
 ![alt text](./Assets/images/set-02/22.png)
 ![alt text](./Assets/images/set-02/23.png)
 ![alt text](./Assets/images/set-02/24.png)

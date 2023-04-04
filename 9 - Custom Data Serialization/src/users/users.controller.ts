@@ -1,6 +1,5 @@
 import {
   Body,
-  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
@@ -13,6 +12,7 @@ import {
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { SerializeInterceptors } from '../interceptors/serialize.interceptors';
 
 @Controller('/auth')
 export class UsersController {
@@ -24,9 +24,10 @@ export class UsersController {
     return this.usersService.create(email, password);
   }
 
-  @UseInterceptors(ClassSerializerInterceptor)
+  @UseInterceptors(SerializeInterceptors)
   @Get('/:id')
   findUser(@Param('id') id: string) {
+    console.log('Fetching user...');
     return this.usersService.findOne(parseInt(id));
   }
 
