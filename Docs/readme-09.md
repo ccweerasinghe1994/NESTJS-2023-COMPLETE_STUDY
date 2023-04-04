@@ -474,6 +474,29 @@ export const CurrentUser = createParamDecorator(
 ```
 
 ## 84 - Communicating from Interceptor to Decorator
+
+let's add the current user interceptor
+```ts
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor,
+} from '@nestjs/common';
+import { UsersService } from '../users.service';
+@Injectable()
+export class CurrentUserInterceptor implements NestInterceptor {
+  constructor(private userService: UsersService) {}
+  async intercept(context: ExecutionContext, next: CallHandler) {
+    const request = context.switchToHttp().getRequest();
+    const { userId } = request.session;
+    if (userId) {
+      request.currentUser = await this.userService.findOne(userId);
+    }
+    return next.handle();
+  }
+}
+```
 ## 86 - Connecting an Interceptor to Dependency Injection
 ## 87 - Globally Scoped Interceptors
 ## 88 - Preventing Access with Authentication Guards
