@@ -498,6 +498,56 @@ export class CurrentUserInterceptor implements NestInterceptor {
 }
 ```
 ## 86 - Connecting an Interceptor to Dependency Injection
+let's import the interceptor
+```ts
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './user.entity';
+import { AuthService } from './auth.service';
+import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+@Module({
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UsersController],
+  providers: [UsersService, AuthService, CurrentUserInterceptor],
+})
+export class UsersModule {}
+```
+
+add it to the controller
+```ts
+  Post,
+  Query,
+  Session,
+  UseInterceptors,
+} from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UsersService } from './users.service';
+import { UserDto } from './dtos/user.dto';
+import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+import { User } from './user.entity';
+@Controller('/auth')
+@Serialize(UserDto)
+@UseInterceptors(CurrentUserInterceptor)
+export class UsersController {
+  constructor(
+    private usersService: UsersService,
+  // }
+  @Get('/whoami')
+  async getMe(@CurrentUser() user: User) {
+    return user;
+  }
+```
+
+return the use from the decorator
+```ts
+export const CurrentUser = createParamDecorator(
+  (data: never, context: ExecutionContext) => {
+    const request = context.switchToHttp().getRequest();
+    return request.currentUser;
+  },
+);
+```
 ## 87 - Globally Scoped Interceptors
 ## 88 - Preventing Access with Authentication Guards
 
