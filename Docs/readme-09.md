@@ -456,6 +456,23 @@ import { CurrentUser } from './decorators/current-user.decorator';
 
 ```
 ## 83 - Why a Decorator and Interceptor
+![alt text](./Assets/images/set-02/54.png)
+![alt text](./Assets/images/set-02/55.png)
+![alt text](./Assets/images/set-02/56.png)
+![alt text](./Assets/images/set-02/57.png)
+
+update the user decorator
+```ts
+
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+export const CurrentUser = createParamDecorator(
+  (data: never, context: ExecutionContext) => {
+    const request = context.switchToHttp().getRequest();
+    console.log(request.session.userId);
+  },
+);
+```
+
 ## 84 - Communicating from Interceptor to Decorator
 ## 86 - Connecting an Interceptor to Dependency Injection
 ## 87 - Globally Scoped Interceptors
@@ -465,10 +482,7 @@ import { CurrentUser } from './decorators/current-user.decorator';
 
 
 
-![alt text](./Assets/images/set-02/54.png)
-![alt text](./Assets/images/set-02/55.png)
-![alt text](./Assets/images/set-02/56.png)
-![alt text](./Assets/images/set-02/57.png)
+
 ![alt text](./Assets/images/set-02/58.png)
 ![alt text](./Assets/images/set-02/59.png)
 ![alt text](./Assets/images/set-02/60.png)
