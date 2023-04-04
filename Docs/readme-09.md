@@ -549,6 +549,50 @@ export const CurrentUser = createParamDecorator(
 );
 ```
 ## 87 - Globally Scoped Interceptors
+![alt text](./Assets/images/set-02/58.png)
+![alt text](./Assets/images/set-02/59.png)
+
+let's remove the interceptor from the controller
+```ts
+
+  Post,
+  Query,
+  Session,
+} from '@nestjs/common';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UsersService } from './users.service';
+import { UserDto } from './dtos/user.dto';
+import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { User } from './user.entity';
+@Controller('/auth')
+@Serialize(UserDto)
+export class UsersController {
+  constructor(
+    private usersService: UsersService,
+```
+
+and add it to the module
+```ts
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './user.entity';
+import { AuthService } from './auth.service';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+@Module({
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UsersController],
+  providers: [
+    UsersService,
+    AuthService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CurrentUserInterceptor,
+    },
+  ],
+})
+export class UsersModule {}
+```
 ## 88 - Preventing Access with Authentication Guards
 
 
@@ -556,8 +600,7 @@ export const CurrentUser = createParamDecorator(
 
 
 
-![alt text](./Assets/images/set-02/58.png)
-![alt text](./Assets/images/set-02/59.png)
+
 ![alt text](./Assets/images/set-02/60.png)
 ![alt text](./Assets/images/set-02/61.png)
 ![alt text](./Assets/images/set-02/62.png)
