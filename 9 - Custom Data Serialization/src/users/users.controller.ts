@@ -23,6 +23,12 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
+  @Post('/signin')
+  signIn(@Body() body: CreateUserDto) {
+    const { email, password } = body;
+    return this.authService.signIn(email, password);
+  }
+
   @Post('/signup')
   createUser(@Body() body: CreateUserDto) {
     const { email, password } = body;

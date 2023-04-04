@@ -177,6 +177,55 @@ data base is updated
 ]
 ```
 ## 75 - Handling User Sign In
+
+
+![alt text](./Assets/images/set-02/47.png)
+![alt text](./Assets/images/set-02/48.png)
+```ts
+    return await this.usersService.create(email, result);
+  }
+  async signIn(email: string, password: string) {
+    const [user] = await this.usersService.find(email);
+    if (!user) {
+      throw new BadRequestException('Invalid email');
+    }
+    const [salt, storedHash] = user.password.split('.');
+    const hash = (await scrypt(password, salt, 32)) as Buffer;
+    if (storedHash !== hash.toString('hex')) {
+      throw new BadRequestException('Invalid password');
+    }
+    return user;
+  }
+}
+```
+
+```ts
+    private authService: AuthService,
+  ) {}
+  @Post('/signin')
+  signIn(@Body() body: CreateUserDto) {
+    const { email, password } = body;
+    return this.authService.signIn(email, password);
+  }
+  @Post('/signup')
+  createUser(@Body() body: CreateUserDto) {
+    const { email, password } = body;
+```
+
+test it
+
+```http
+### SIGNIN A USER
+POST localhost:3000/auth/signin
+content-type: application/json
+{
+  "email": "chamara1aqq@gmail.com",
+  "password": "password"
+}
+```
+
+
+![alt text](./Assets/images/set-02/49.png)
 ## 76 - Setting up Sessions
 ## 77 - Changing and Fetching Session Data
 ## 78 - Signing in a User
@@ -192,10 +241,6 @@ data base is updated
 
 
 
-
-![alt text](./Assets/images/set-02/47.png)
-![alt text](./Assets/images/set-02/48.png)
-![alt text](./Assets/images/set-02/49.png)
 ![alt text](./Assets/images/set-02/50.png)
 ![alt text](./Assets/images/set-02/51.png)
 ![alt text](./Assets/images/set-02/52.png)

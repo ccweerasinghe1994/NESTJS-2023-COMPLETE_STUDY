@@ -28,5 +28,16 @@ export class AuthService {
     return await this.usersService.create(email, result);
   }
 
-  signIn(email: string, password: string) {}
+  async signIn(email: string, password: string) {
+    const [user] = await this.usersService.find(email);
+    if (!user) {
+      throw new BadRequestException('Invalid email');
+    }
+    const [salt, storedHash] = user.password.split('.');
+    const hash = (await scrypt(password, salt, 32)) as Buffer;
+    if (storedHash !== hash.toString('hex')) {
+      throw new BadRequestException('Invalid password');
+    }
+    return user;
+  }
 }

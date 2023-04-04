@@ -24,3 +24,12 @@ content-type: application/json
   "email": "chamara@gmail.com",
   "password": "111111"
 }
+
+### SIGNIN A USER
+POST localhost:3000/auth/signin
+content-type: application/json
+
+{
+  "email": "chamara1aqq@gmail.com",
+  "password": "password"
+}
