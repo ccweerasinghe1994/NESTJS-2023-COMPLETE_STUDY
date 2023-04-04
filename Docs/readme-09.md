@@ -418,6 +418,8 @@ test it
     return this.usersService.findOne(parseInt(id));
 ```
 ## 81 - Two Automation Tools
+![alt text](./Assets/images/set-02/52.png)
+![alt text](./Assets/images/set-02/53.png)
 ## 82 - Custom Param Decorators
 ## 83 - Why a Decorator and Interceptor
 ## 84 - Communicating from Interceptor to Decorator
@@ -428,8 +430,7 @@ test it
 
 
 
-![alt text](./Assets/images/set-02/52.png)
-![alt text](./Assets/images/set-02/53.png)
+
 ![alt text](./Assets/images/set-02/54.png)
 ![alt text](./Assets/images/set-02/55.png)
 ![alt text](./Assets/images/set-02/56.png)
