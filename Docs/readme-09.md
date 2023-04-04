@@ -77,6 +77,27 @@ export class AuthService {
 ![alt text](./Assets/images/set-02/45.png)
 ![alt text](./Assets/images/set-02/46.png)
 ## 73 - Salting and Hashing the Password
+```ts
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { UsersService } from './users.service';
+import { randomBytes, scrypt as _scrypt } from 'crypto';
+import { promisify } from 'util';
+const scrypt = promisify(_scrypt);
+@Injectable()
+export class AuthService {
+      throw new BadRequestException('Email in use');
+    }
+    //   if not, hash their password
+    // generate a salt
+    const salt = randomBytes(8).toString('hex');
+    // hash the salt + the plain text password
+    const hash = (await scrypt(password, salt, 32)) as Buffer;
+    // join the salt and the hash together
+    const result = salt + '.' + hash.toString('hex');
+    //   create a new user and save them to the db
+    //   return the user
+  }
+```
 ## 74 - Creating a User
 ## 75 - Handling User Sign In
 ## 76 - Setting up Sessions
