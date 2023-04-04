@@ -243,6 +243,44 @@ import { UserDto } from './dtos/user.dto';
     console.log('Fetching user...');
 ```
 ## 67 - ControllerWide Serialization
+let's remove the password from the every response
+
+```ts
+import { UserDto } from './dtos/user.dto';
+@Controller('/auth')
+@Serialize(UserDto)
+export class UsersController {
+  constructor(private usersService: UsersService) {}
+    return this.usersService.create(email, password);
+  }
+  @Get('/:id')
+  findUser(@Param('id') id: string) {
+
+```
+
+```http
+GET http://localhost:3000/auth?email=abc@email.com
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 69
+ETag: W/"45-h+NZiEQrsD6xOJ0fSafRZOahWXs"
+Date: Tue, 04 Apr 2023 06:27:38 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+[
+  {
+    "id": 10,
+    "email": "abc@email.com"
+  },
+  {
+    "id": 11,
+    "email": "abc@email.com"
+  }
+]
+```
 ## 68 - A Bit of Type Safety Around Serialize
 
 
