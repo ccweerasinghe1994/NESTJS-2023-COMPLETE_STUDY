@@ -24,6 +24,14 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
+  @Get('/whoami')
+  async getMe(@Session() session: any) {
+    if (!session.userId) {
+      return null;
+    }
+    return this.usersService.findOne(session.userId);
+  }
+
   @Post('/signin')
   async signIn(@Body() body: CreateUserDto, @Session() session: any) {
     const { email, password } = body;

@@ -328,6 +328,28 @@ content-type: application/json
 GET localhost:3000/auth/9
 ```
 ## 79 - Getting the Current User
+let's add a route to get the current user
+```ts
+    private authService: AuthService,
+  ) {}
+  @Get('/whoami')
+  async getMe(@Session() session: any) {
+    if (!session.userId) {
+      return null;
+    }
+    return this.usersService.findOne(session.userId);
+  }
+  @Post('/signin')
+  async signIn(@Body() body: CreateUserDto, @Session() session: any) {
+    const { email, password } = body;
+```
+
+and test it
+
+```http
+### GET CURRENT USER
+GET localhost:3000/auth/whoami
+```
 ## 80 - Signing Out a User
 ## 81 - Two Automation Tools
 ## 82 - Custom Param Decorators

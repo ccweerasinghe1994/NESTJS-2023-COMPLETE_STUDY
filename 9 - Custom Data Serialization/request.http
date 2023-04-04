@@ -44,8 +44,5 @@ content-type: application/json
   "password": "password"
 }
 
-### SET A COLOR
-GET localhost:3000/auth/colors/blue
-
-### GET A COLOR
-GET localhost:3000/auth/colors
+### GET CURRENT USER
+GET localhost:3000/auth/whoami
