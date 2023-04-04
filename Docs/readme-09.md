@@ -99,6 +99,83 @@ export class AuthService {
   }
 ```
 ## 74 - Creating a User
+```ts
+const hash = (await scrypt(password, salt, 32)) as Buffer;
+    // join the salt and the hash together
+    const result = salt + '.' + hash.toString('hex');
+    //   create a new user and save them to the db
+    //   return the user
+    return await this.usersService.create(email, result);
+  }
+```
+
+let's use it in the controller
+
+```ts
+import { UpdateUserDto } from './dtos/update-user.dto';
+import { Serialize } from '../interceptors/serialize.interceptors';
+import { UserDto } from './dtos/user.dto';
+import { AuthService } from './auth.service';
+@Controller('/auth')
+@Serialize(UserDto)
+export class UsersController {
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+  ) {}
+  @Post('/signup')
+  createUser(@Body() body: CreateUserDto) {
+    const { email, password } = body;
+    return this.authService.signUp(email, password);
+  }
+  @Get('/:id')
+```
+
+```http
+### CREATE A NEW USER
+POST localhost:3000/auth/signup
+content-type: application/json
+{
+  "email": "chamara1@gmail.com",
+  "password": "password"
+}
+```
+
+data base is updated
+```json
+[
+  {
+    "id": 9,
+    "email": "chamara@gmail.com",
+    "password": "111111"
+  },
+  {
+    "id": 10,
+    "email": "abc@email.com",
+    "password": "password"
+  },
+  {
+    "id": 11,
+    "email": "abc@email.com",
+    "password": "password"
+  },
+  {
+    "id": 12,
+    "email": "chamara1@gmail.com",
+    "password": "7fead9ba0a2d2e5c.64d509dbd65e3da3c2df9d5321338628d251a7832208332a42cc0a9f73b75ae4"
+  },
+  {
+    "id": 13,
+    "email": "chamara1a@gmail.com",
+    "password": "e1dc864c68c1404a.4dffe7a4631d25932f4e56bb1b637a54d01cce94b42fdbecda75e975ba196da7"
+  },
+  {
+    "id": 14,
+    "email": "chamara1aqq@gmail.com",
+    "password": "91dd936bcca07f56.42d3a348449cd90e3a6be75b6ee34e12f028557f1ade8541b5470d0c16c9d175"
+  }
+]
+```
 ## 75 - Handling User Sign In
 ## 76 - Setting up Sessions
 ## 77 - Changing and Fetching Session Data
