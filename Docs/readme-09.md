@@ -227,6 +227,32 @@ content-type: application/json
 
 ![alt text](./Assets/images/set-02/49.png)
 ## 76 - Setting up Sessions
+![alt text](./Assets/images/set-02/50.png)
+let's install the session package
+```bash
+npm install cookie-session @types/cookie-session 
+```
+
+setup the session in the main.ts file
+
+```ts
+import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cookieSession = require('cookie-session');
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.use(
+    cookieSession({
+      keys: ['asdfasdf'],
+    }),
+  );
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+```
+
+
 ## 77 - Changing and Fetching Session Data
 ## 78 - Signing in a User
 ## 79 - Getting the Current User
@@ -241,7 +267,7 @@ content-type: application/json
 
 
 
-![alt text](./Assets/images/set-02/50.png)
+
 ![alt text](./Assets/images/set-02/51.png)
 ![alt text](./Assets/images/set-02/52.png)
 ![alt text](./Assets/images/set-02/53.png)
