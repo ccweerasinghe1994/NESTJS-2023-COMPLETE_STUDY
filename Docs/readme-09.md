@@ -9,6 +9,35 @@
 ![alt text](./Assets/images/set-02/26.png)
 ![alt text](./Assets/images/set-02/27.png)
 ## 70 - Reminder on Service Setup
+![alt text](./Assets/images/set-02/28.png)
+![alt text](./Assets/images/set-02/29.png)
+![alt text](./Assets/images/set-02/30.png)
+
+let's create a auth service
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { UsersService } from './users.service';
+@Injectable()
+export class AuthService {
+  constructor(private usersService: UsersService) {}
+}
+```
+
+```ts
+import { UsersService } from './users.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './user.entity';
+import { AuthService } from './auth.service';
+@Module({
+    imports: [            // Import the TypeOrmModule and pass the User entity to it
+        TypeOrmModule.forFeature([User])
+    ],
+    controllers: [UsersController],  // Add the UsersController to the list of controllers
+    providers: [UsersService, AuthService]  // Add the UsersService and AuthService to the list of providers
+})
+
+```
 ## 71 - Implementing Signup Functionality
 ## 72 - Optional Understanding Password Hashing
 ## 73 - Salting and Hashing the Password
@@ -28,9 +57,7 @@
 ## 88 - Preventing Access with Authentication Guards
 
 
-![alt text](./Assets/images/set-02/28.png)
-![alt text](./Assets/images/set-02/29.png)
-![alt text](./Assets/images/set-02/30.png)
+
 ![alt text](./Assets/images/set-02/31.png)
 ![alt text](./Assets/images/set-02/32.png)
 ![alt text](./Assets/images/set-02/33.png)
