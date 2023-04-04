@@ -173,6 +173,37 @@ export class SerializeInterceptors implements NestInterceptor {
 ```
 
 ## 65 - Customizing the Interceptors DTO
+let's customize the interceptor to accept the dto as a parameter
+```ts
+import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
+import { map, Observable } from 'rxjs';
+import { plainToInstance } from 'class-transformer';
+export class SerializeInterceptors implements NestInterceptor {
+  constructor(private dto: any) {}
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    return next.handle().pipe(
+      map((data: any) => {
+        return plainToInstance(this.dto, data, {
+          excludeExtraneousValues: true,
+        });
+      }),
+```
+
+and use it in the user controller
+```ts
+import { UsersService } from './users.service';
+import { UpdateUserDto } from './dtos/update-user.dto';
+import { SerializeInterceptors } from '../interceptors/serialize.interceptors';
+import { UserDto } from './dtos/user.dto';
+@Controller('/auth')
+export class UsersController {
+    return this.usersService.create(email, password);
+  }
+  @UseInterceptors(new SerializeInterceptors(UserDto))
+  @Get('/:id')
+  findUser(@Param('id') id: string) {
+    console.log('Fetching user...');
+```
 ## 66 - Wrapping the Interceptor in a Decorator
 ## 67 - ControllerWide Serialization
 ## 68 - A Bit of Type Safety Around Serialize
