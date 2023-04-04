@@ -1,6 +1,13 @@
 # Authentication From Scratch
 
 ## 69 - Authentication Overview 
+
+![alt text](./Assets/images/set-02/22.png)
+![alt text](./Assets/images/set-02/23.png)
+![alt text](./Assets/images/set-02/24.png)
+![alt text](./Assets/images/set-02/25.png)
+![alt text](./Assets/images/set-02/26.png)
+![alt text](./Assets/images/set-02/27.png)
 ## 70 - Reminder on Service Setup
 ## 71 - Implementing Signup Functionality
 ## 72 - Optional Understanding Password Hashing
@@ -21,12 +28,6 @@
 ## 88 - Preventing Access with Authentication Guards
 
 
-![alt text](./Assets/images/set-02/22.png)
-![alt text](./Assets/images/set-02/23.png)
-![alt text](./Assets/images/set-02/24.png)
-![alt text](./Assets/images/set-02/25.png)
-![alt text](./Assets/images/set-02/26.png)
-![alt text](./Assets/images/set-02/27.png)
 ![alt text](./Assets/images/set-02/28.png)
 ![alt text](./Assets/images/set-02/29.png)
 ![alt text](./Assets/images/set-02/30.png)
