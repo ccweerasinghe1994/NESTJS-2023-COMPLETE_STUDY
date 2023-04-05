@@ -38,6 +38,11 @@ it('can create an instance of auth service', async () => {
 });
 ```
 ## 91 - Yes Testing is Confusing
+![alt text](./Assets/images/set-02/69.png)
+![alt text](./Assets/images/set-02/70.png)
+![alt text](./Assets/images/set-02/71.png)
+![alt text](./Assets/images/set-02/72.png)
+![alt text](./Assets/images/set-02/73.png)
 ## 92 - Getting TypeScript to Help With Mocks
 ## 94 - Improving File Layout
 ## 95 - Ensuring Password Gets Hashed
@@ -51,11 +56,7 @@ it('can create an instance of auth service', async () => {
 ## 108 - Not Super Effective Tests
 ## 109 - Testing the Signin Method
 
-![alt text](./Assets/images/set-02/69.png)
-![alt text](./Assets/images/set-02/70.png)
-![alt text](./Assets/images/set-02/71.png)
-![alt text](./Assets/images/set-02/72.png)
-![alt text](./Assets/images/set-02/73.png)
+
 ![alt text](./Assets/images/set-02/74.png)
 ![alt text](./Assets/images/set-02/75.png)
 ![alt text](./Assets/images/set-02/76.png)
