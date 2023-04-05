@@ -116,6 +116,19 @@ describe('AuthService', () => {
 
 ```
 ## 95 - Ensuring Password Gets Hashed
+```ts
+  it('can create an instance of auth service', async () => {
+    expect(service).toBeDefined();
+  });
+  it('creates a new user with a salted and hashed password', async () => {
+    const user = await service.signUp('asdasd@gmail.com', 'asdasd');
+    expect(user.password).not.toEqual('asdasd');
+    const [salt, hash] = user.password.split('.');
+    expect(salt).toBeDefined();
+    expect(hash).toBeDefined();
+  });
+});
+```
 ## 97 - Changing Mock Implementations
 ## 99 - Testing the Signin Flow
 ## 101 - Checking Password Comparison
