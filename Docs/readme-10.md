@@ -7,6 +7,8 @@
 ![alt text](./Assets/images/set-02/66.png)
 ![alt text](./Assets/images/set-02/67.png)
 ## 90 - Testing Setup
+
+![alt text](./Assets/images/set-02/68.png)
 ## 91 - Yes Testing is Confusing
 ## 92 - Getting TypeScript to Help With Mocks
 ## 94 - Improving File Layout
@@ -21,7 +23,6 @@
 ## 108 - Not Super Effective Tests
 ## 109 - Testing the Signin Method
 
-![alt text](./Assets/images/set-02/68.png)
 ![alt text](./Assets/images/set-02/69.png)
 ![alt text](./Assets/images/set-02/70.png)
 ![alt text](./Assets/images/set-02/71.png)
