@@ -28,14 +28,6 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
-  // @Get('/whoami')
-  // async getMe(@Session() session: any) {
-  //   if (!session.userId) {
-  //     throw new NotFoundException('Not Authenticated');
-  //   }
-  //   return this.usersService.findOne(session.userId);
-  // }
-
   @Get('/whoami')
   @UseGuards(AuthGuard)
   async getMe(@CurrentUser() user: User) {
