@@ -5,8 +5,9 @@ import { User } from './user.entity';
 
 describe('AuthService', () => {
   let service: AuthService;
+  let fakeUserService: Partial<UsersService>;
   beforeEach(async () => {
-    const fakeUserService: Partial<UsersService> = {
+    fakeUserService = {
       find: () => Promise.resolve([]),
       create: (email: string, password: string) =>
         Promise.resolve({ id: 1, email, password } as User),
@@ -35,5 +36,18 @@ describe('AuthService', () => {
     const [salt, hash] = user.password.split('.');
     expect(salt).toBeDefined();
     expect(hash).toBeDefined();
+  });
+
+  it('throws an error if user signs up with email that is in use', async () => {
+    fakeUserService.find = () =>
+      Promise.resolve([
+        { id: 1, email: 'abc@gmail.com', password: 'abc' } as User,
+      ]);
+
+    try {
+      await service.signUp('abc@gmail.com', 'abc');
+    } catch (e) {
+      expect(e.message).toEqual('Email in use');
+    }
   });
 });

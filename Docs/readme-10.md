@@ -130,6 +130,20 @@ describe('AuthService', () => {
 });
 ```
 ## 97 - Changing Mock Implementations
+```ts
+  it('throws an error if user signs up with email that is in use', async () => {
+    fakeUserService.find = () =>
+      Promise.resolve([
+        { id: 1, email: 'abc@gmail.com', password: 'abc' } as User,
+      ]);
+
+    try {
+      await service.signUp('abc@gmail.com', 'abc');
+    } catch (e) {
+      expect(e.message).toEqual('Email in use');
+    }
+  });
+```
 ## 99 - Testing the Signin Flow
 ## 101 - Checking Password Comparison
 ## 102 - More Intelligent Mocks
