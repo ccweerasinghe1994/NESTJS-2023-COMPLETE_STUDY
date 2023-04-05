@@ -44,6 +44,41 @@ it('can create an instance of auth service', async () => {
 ![alt text](./Assets/images/set-02/72.png)
 ![alt text](./Assets/images/set-02/73.png)
 ## 92 - Getting TypeScript to Help With Mocks
+
+
+![alt text](./Assets/images/set-02/74.png)
+
+
+let's add some types to our fakeUserService
+```ts
+import { AuthService } from './auth.service';
+import { Test } from '@nestjs/testing';
+import { UsersService } from './users.service';
+import { User } from './user.entity';
+
+it('can create an instance of auth service', async () => {
+  const fakeUserService: Partial<UsersService> = {
+    find: () => Promise.resolve([]),
+    create: (email: string, password: string) =>
+      Promise.resolve({ id: 1, email, password } as User),
+  };
+
+  const module = await Test.createTestingModule({
+    providers: [
+      AuthService,
+      {
+        provide: UsersService,
+        useValue: fakeUserService,
+      },
+    ],
+  }).compile();
+
+  const service = module.get<AuthService>(AuthService);
+
+  expect(service).toBeDefined();
+});
+
+```
 ## 94 - Improving File Layout
 ## 95 - Ensuring Password Gets Hashed
 ## 97 - Changing Mock Implementations
@@ -57,7 +92,6 @@ it('can create an instance of auth service', async () => {
 ## 109 - Testing the Signin Method
 
 
-![alt text](./Assets/images/set-02/74.png)
 ![alt text](./Assets/images/set-02/75.png)
 ![alt text](./Assets/images/set-02/76.png)
 ![alt text](./Assets/images/set-02/77.png)
