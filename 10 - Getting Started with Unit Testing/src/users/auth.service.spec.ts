@@ -61,5 +61,36 @@ describe('AuthService', () => {
         expect(e.message).toEqual('Invalid email');
       }
     });
+
+    it('throws if an invalid password is provided', async () => {
+      fakeUserService.find = () => {
+        return Promise.resolve([
+          {
+            id: 1,
+            email: 's',
+            password: 'abc',
+          } as User,
+        ]);
+      };
+
+      try {
+        await service.signIn('chamara1aqqq@gmail.com', 'password');
+      } catch (e) {
+        expect(e.message).toEqual('Invalid password');
+      }
+    });
+    it('return the user if correct password is provided', async () => {
+      fakeUserService.find = () =>
+        Promise.resolve([
+          {
+            id: 1,
+            email: 's',
+            password:
+              'f16478591447729b.360a6e9ca0c6bd925131d927a6aebdc9433f2e6afac6f68ae5be1876d075c95a',
+          } as User,
+        ]);
+      const user = await service.signIn('chamara1aqqq@gmail.com', 'password');
+      expect(user).toBeDefined();
+    });
   });
 });
