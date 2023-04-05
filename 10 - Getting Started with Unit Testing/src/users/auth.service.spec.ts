@@ -30,24 +30,36 @@ describe('AuthService', () => {
     expect(service).toBeDefined();
   });
 
-  it('creates a new user with a salted and hashed password', async () => {
-    const user = await service.signUp('asdasd@gmail.com', 'asdasd');
-    expect(user.password).not.toEqual('asdasd');
-    const [salt, hash] = user.password.split('.');
-    expect(salt).toBeDefined();
-    expect(hash).toBeDefined();
+  describe('signup', () => {
+    it('creates a new user with a salted and hashed password', async () => {
+      const user = await service.signUp('asdasd@gmail.com', 'asdasd');
+      expect(user.password).not.toEqual('asdasd');
+      const [salt, hash] = user.password.split('.');
+      expect(salt).toBeDefined();
+      expect(hash).toBeDefined();
+    });
+
+    it('throws an error if user signs up with email that is in use', async () => {
+      fakeUserService.find = () =>
+        Promise.resolve([
+          { id: 1, email: 'abc@gmail.com', password: 'abc' } as User,
+        ]);
+
+      try {
+        await service.signUp('abc@gmail.com', 'abc');
+      } catch (e) {
+        expect(e.message).toEqual('Email in use');
+      }
+    });
   });
 
-  it('throws an error if user signs up with email that is in use', async () => {
-    fakeUserService.find = () =>
-      Promise.resolve([
-        { id: 1, email: 'abc@gmail.com', password: 'abc' } as User,
-      ]);
-
-    try {
-      await service.signUp('abc@gmail.com', 'abc');
-    } catch (e) {
-      expect(e.message).toEqual('Email in use');
-    }
+  describe('signin', () => {
+    it('throws if an invalid email is provided', async () => {
+      try {
+        await service.signIn('abc', 'abc');
+      } catch (e) {
+        expect(e.message).toEqual('Invalid email');
+      }
+    });
   });
 });

@@ -145,6 +145,17 @@ describe('AuthService', () => {
   });
 ```
 ## 99 - Testing the Signin Flow
+```ts
+  describe('signin', () => {
+    it('throws if an invalid email is provided', async () => {
+      try {
+        await service.signIn('abc', 'abc');
+      } catch (e) {
+        expect(e.message).toEqual('Invalid email');
+      }
+    });
+  });
+```
 ## 101 - Checking Password Comparison
 ## 102 - More Intelligent Mocks
 ## 104 - Refactoring to Use Intelligent Mocks
