@@ -192,6 +192,37 @@ describe('AuthService', () => {
   });
 ```
 ## 102 - More Intelligent Mocks
+```ts
+10 - Getting Started with Unit Testing\src\users\auth.service.spec.ts
+describe('AuthService', () => {
+  let service: AuthService;
+  let fakeUserService: Partial<UsersService>;
+  const users: User[] = [];
+  beforeEach(async () => {
+    fakeUserService = {
+      find: (email: string) => {
+        return Promise.resolve(users.filter((user) => user.email === email));
+      },
+      create: (email: string, password: string) => {
+        const user = {
+          id: Math.floor(Math.random() * 1000),
+          email,
+          password,
+        } as User;
+        users.push(user);
+        return Promise.resolve(user);
+      },
+    };
+    const module = await Test.createTestingModule({
+      }
+    });
+    it('return the user if correct password is provided', async () => {
+      await service.signUp('a@gmail.com', 'password');
+      const user = await service.signIn('a@gmail.com', 'password');
+      expect(user).toBeDefined();
+    });
+  });
+```
 ## 104 - Refactoring to Use Intelligent Mocks
 ## 105 - Unit Testing a Controller
 ## 106 - More Mock Implementations

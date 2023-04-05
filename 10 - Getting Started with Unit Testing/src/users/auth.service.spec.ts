@@ -6,11 +6,21 @@ import { User } from './user.entity';
 describe('AuthService', () => {
   let service: AuthService;
   let fakeUserService: Partial<UsersService>;
+  const users: User[] = [];
   beforeEach(async () => {
     fakeUserService = {
-      find: () => Promise.resolve([]),
-      create: (email: string, password: string) =>
-        Promise.resolve({ id: 1, email, password } as User),
+      find: (email: string) => {
+        return Promise.resolve(users.filter((user) => user.email === email));
+      },
+      create: (email: string, password: string) => {
+        const user = {
+          id: Math.floor(Math.random() * 1000),
+          email,
+          password,
+        } as User;
+        users.push(user);
+        return Promise.resolve(user);
+      },
     };
 
     const module = await Test.createTestingModule({
@@ -80,16 +90,8 @@ describe('AuthService', () => {
       }
     });
     it('return the user if correct password is provided', async () => {
-      fakeUserService.find = () =>
-        Promise.resolve([
-          {
-            id: 1,
-            email: 's',
-            password:
-              'f16478591447729b.360a6e9ca0c6bd925131d927a6aebdc9433f2e6afac6f68ae5be1876d075c95a',
-          } as User,
-        ]);
-      const user = await service.signIn('chamara1aqqq@gmail.com', 'password');
+      await service.signUp('a@gmail.com', 'password');
+      const user = await service.signIn('a@gmail.com', 'password');
       expect(user).toBeDefined();
     });
   });
