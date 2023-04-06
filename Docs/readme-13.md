@@ -24,6 +24,43 @@ updating the Report entity
   mileage: number;
 ```
 ## 125 - A DTO for Report Creation
+![alt text](./Assets/images/set-02/97.png)
+![alt text](./Assets/images/set-02/98.png)
+
+creating the create-user.dto.ts
+```ts
+export class CreateReportDto {
+  price: number;
+
+  make: string;
+
+  model: string;
+
+  year: number;
+
+  longitude: number;
+
+  latitude: number;
+
+  mileage: number;
+}
+
+```
+
+adding the DTO to the controller
+```ts
+import { Body, Controller, Post } from '@nestjs/common';
+import { CreateReportDto } from './dtos/create-report.dto';
+
+@Controller('reports')
+export class ReportsController {
+  @Post()
+  createReport(@Body() body: CreateReportDto) {
+    return 'This action adds a new report';
+  }
+}
+
+```
 ## 126 - Receiving Report Creation Requests
 ## 127 - Saving a Report with the Reports Service
 ## 128 - Testing Report Creation
@@ -34,7 +71,6 @@ updating the Report entity
 ## 134 - Setting up the Association
 ## 135 - Formatting the Report Response
 ## 136 - Transforming Properties with a DTO
-![alt text](./Assets/images/set-02/97.png)
-![alt text](./Assets/images/set-02/98.png)
+
 ![alt text](./Assets/images/set-02/99.png)
 ![alt text](./Assets/images/set-02/100.png)
