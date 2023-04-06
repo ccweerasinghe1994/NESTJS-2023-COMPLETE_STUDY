@@ -156,6 +156,11 @@ returning the report
 }
 ```
 ## 128 - Testing Report Creation
+we need to sign in to make the request
+![alt text](./Assets/images/set-02/99.png)
+if not
+![alt text](./Assets/images/set-02/100.png)
+
 ## 129 - Building Associations
 ## 130 - Types of Associations
 ## 131 - The ManyToOne and OneToMany Decorators
@@ -163,6 +168,3 @@ returning the report
 ## 134 - Setting up the Association
 ## 135 - Formatting the Report Response
 ## 136 - Transforming Properties with a DTO
-
-![alt text](./Assets/images/set-02/99.png)
-![alt text](./Assets/images/set-02/100.png)
