@@ -125,6 +125,23 @@ update the .gitignore file
 ```
 
 ## 120 - Solving a SQLite Error
+add the --maxWorkers=1
+to jest e2e test script
+```json
+
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:cov": "cross-env NODE_ENV=test jest --coverage",
+    "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "cross-env NODE_ENV=test jest --config ./test/jest-e2e.json --maxWorkers=1"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.0.0",
+```
+
+and update the env file
+```env
+DB_NAME=test.sqlite
+```
 ## 121 - It Works
 ## 122 - A Followup Test
 
