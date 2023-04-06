@@ -255,8 +255,76 @@ export class ReportsService {
   }
 ```
 ## 135 - Formatting the Report Response
+let's create a DTO
+```ts
+
+import { Expose, Transform } from 'class-transformer';
+export class ReportDto {
+  @Expose()
+  id: number;
+  @Expose()
+  price: number;
+  @Expose()
+  make: string;
+  @Expose()
+  model: string;
+  @Expose()
+  year: number;
+  @Expose()
+  longitude: number;
+  @Expose()
+  latitude: number;
+  @Expose()
+  mileage: number;
+
+}
+```
 ## 136 - Transforming Properties with a DTO
 
+let's format the response
+```ts
+
+import { Expose, Transform } from 'class-transformer';
+export class ReportDto {
+  @Expose()
+  id: number;
+  @Expose()
+  price: number;
+  @Expose()
+  make: string;
+  @Expose()
+  model: string;
+  @Expose()
+  year: number;
+  @Expose()
+  longitude: number;
+  @Expose()
+  latitude: number;
+  @Expose()
+  mileage: number;
+  @Expose()
+  @Transform(({ obj }) => obj.user.id)
+  userId: number;
+}
+```
+
+let's use the DTO in the controller
+```ts
+reports.controller.ts
+import { AuthGuard } from '../guards/auth.guard';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
+import { User } from '../users/user.entity';
+import { Serialize } from '../interceptors/serialize.interceptors';
+import { ReportDto } from './dtos/report.dto';
+@Controller('reports')
+export class ReportsController {
+  @Post()
+  @UseGuards(AuthGuard)
+  @Serialize(ReportDto)
+  createReport(@Body() body: CreateReportDto, @CurrentUser() user: User) {
+    return this.reportService.create(body, user);
+  }
+```
 ![alt text](./Assets/images/set-03/18.png)
 ![alt text](./Assets/images/set-03/19.png)
 ![alt text](./Assets/images/set-03/20.png)
