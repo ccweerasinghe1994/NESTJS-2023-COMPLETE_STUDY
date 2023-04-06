@@ -96,6 +96,11 @@ let's test the result in postman
 
 ![alt text](./Assets/images/set-03/20.png)
 ## 140 - Authorization vs Authentication
+![alt text](./Assets/images/set-03/21.png)
+![alt text](./Assets/images/set-03/22.png)
+
+
+
 ## 141 - Adding an Authorization Guard
 ## 142 - The Guard Doesnt Work
 ## 143 - Middlewares Guards and Interceptors
@@ -106,8 +111,6 @@ let's test the result in postman
 ## 148 - How Will We Generate an Estimate
 
 
-![alt text](./Assets/images/set-03/21.png)
-![alt text](./Assets/images/set-03/22.png)
 ![alt text](./Assets/images/set-03/23.png)
 ![alt text](./Assets/images/set-03/24.png)
 ![alt text](./Assets/images/set-03/25.png)
