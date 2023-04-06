@@ -1,8 +1,38 @@
 # Query Builders with TypeORM
 ## 149 - Creating a Query Builder 
+![alt text](./Assets/images/set-03/34.png)
+
+let's add the method to the controller
+```ts
+  @Get()
+  getEstimate(@Query() query: GetEstimateDto) {
+    return this.reportService.createEstimate(query);
+  }
+}
+```
+let's create the method mention above
+```ts
+import { Report } from './report.entity';
+import { Repository } from 'typeorm';
+import { User } from '../users/user.entity';
+import { GetEstimateDto } from './dtos/get-estimate.dto';
+@Injectable()
+export class ReportsService {
+    report.approved = approved;
+    return await this.reportsRepository.save(report);
+  }
+  async createEstimate(estimateDto: GetEstimateDto) {
+    return this.reportsRepository
+      .createQueryBuilder()
+      .select('*')
+      .where('make = :make', { make: estimateDto.make })
+      .getRawMany();
+  }
+}
+```
+
 ## 150 - Writing a Query to Produce the Estimate
 ## 151 - Testing the Estimate Logic
-![alt text](./Assets/images/set-03/34.png)
 ![alt text](./Assets/images/set-03/35.png)
 ![alt text](./Assets/images/set-03/36.png)
 ![alt text](./Assets/images/set-03/37.png)
