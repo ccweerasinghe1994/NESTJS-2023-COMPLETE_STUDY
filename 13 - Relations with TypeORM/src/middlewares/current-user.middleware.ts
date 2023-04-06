@@ -4,6 +4,7 @@ import { UsersService } from '../users/users.service';
 import { User } from '../users/user.entity';
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       currentUser?: User;
