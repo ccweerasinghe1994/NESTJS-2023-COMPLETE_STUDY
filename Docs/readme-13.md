@@ -1,6 +1,8 @@
 # Relations with TypeORM
 
 ## 123 - Back to Reports 
+![alt text](./Assets/images/set-02/95.png)
+![alt text](./Assets/images/set-02/96.png)
 ## 124 - Adding Properties to Reports
 ## 125 - A DTO for Report Creation
 ## 126 - Receiving Report Creation Requests
@@ -13,8 +15,6 @@
 ## 134 - Setting up the Association
 ## 135 - Formatting the Report Response
 ## 136 - Transforming Properties with a DTO
-![alt text](./Assets/images/set-02/95.png)
-![alt text](./Assets/images/set-02/96.png)
 ![alt text](./Assets/images/set-02/97.png)
 ![alt text](./Assets/images/set-02/98.png)
 ![alt text](./Assets/images/set-02/99.png)
