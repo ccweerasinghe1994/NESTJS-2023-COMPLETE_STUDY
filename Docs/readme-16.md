@@ -14,27 +14,3 @@
 ## 166 - Heroku Specific Project Config
 ## 166 - Heroku Specific Project Config_DV
 ## 167 - Deploying the App Final Lecture
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-##  
-##
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-## 
-## 
