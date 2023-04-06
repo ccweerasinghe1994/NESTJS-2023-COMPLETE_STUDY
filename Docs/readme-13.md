@@ -62,6 +62,71 @@ export class ReportsController {
 
 ```
 ## 126 - Receiving Report Creation Requests
+let's add validation to the DTO
+```ts
+13 - Relations with TypeORM\src\reports\dtos\create-report.dto.ts
+import {
+  IsLatitude,
+  IsLongitude,
+  IsNumber,
+  IsString,
+  Max,
+  Min,
+} from 'class-validator';
+export class CreateReportDto {
+  @IsString()
+  make: string;
+  @IsString()
+  model: string;
+  @IsNumber()
+  @Max(2050)
+  @Min(1930)
+  year: number;
+  @IsLongitude()
+  longitude: number;
+  @IsLatitude()
+  latitude: number;
+  @IsNumber()
+  @Max(1000000)
+  @Min(0)
+  price: number;
+  @IsNumber()
+  @Max(1000000)
+  @Min(0)
+  mileage: number;
+}
+```
+let's add the guard to only allow authenticated users to create reports
+```ts
+13 - Relations with TypeORM\src\reports\reports.controller.ts
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { CreateReportDto } from './dtos/create-report.dto';
+import { ReportsService } from './reports.service';
+import { AuthGuard } from '../guards/auth.guard';
+@Controller('reports')
+export class ReportsController {
+  constructor(private readonly reportService: ReportsService) {}
+  @Post()
+  @UseGuards(AuthGuard)
+  createReport(@Body() body: CreateReportDto) {
+    this.reportService.create(body);
+  }
+}
+```
+
+sample report 
+```ts
+13 - Relations with TypeORM\src\reports\reports.service.ts
+import { Injectable } from '@nestjs/common';
+import { CreateReportDto } from './dtos/create-report.dto';
+@Injectable()
+export class ReportsService {
+  create(body: CreateReportDto) {
+    return 'This action adds a new report';
+  }
+}
+```
+
 ## 127 - Saving a Report with the Reports Service
 ## 128 - Testing Report Creation
 ## 129 - Building Associations
