@@ -102,6 +102,25 @@ let's test the result in postman
 
 
 ## 141 - Adding an Authorization Guard
+let's add a new column to the user entity
+```ts
+  @Column({ default: false })
+  isAdmin: boolean;
+```
+
+let's create a new guard
+```ts
+import { CanActivate, ExecutionContext } from '@nestjs/common';
+export class AdminGuard implements CanActivate {
+  canActivate(context: ExecutionContext): boolean {
+    const request = context.switchToHttp().getRequest();
+    if (!request.currentUser) {
+      return false;
+    }
+    return request.currentUser.isAdmin;
+  }
+}
+```
 ## 142 - The Guard Doesnt Work
 ## 143 - Middlewares Guards and Interceptors
 ## 144 - Assigning CurrentUser with a Middleware

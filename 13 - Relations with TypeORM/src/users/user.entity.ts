@@ -13,10 +13,17 @@ import { Report } from '../reports/report.entity';
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   email: string;
+
   @Column()
   password: string;
+
+  @Column({
+    default: true,
+  })
+  isAdmin: boolean;
 
   @OneToMany(() => Report, (report) => report.user)
   reports: Report[];
