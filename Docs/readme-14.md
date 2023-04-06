@@ -121,7 +121,25 @@ export class AdminGuard implements CanActivate {
   }
 }
 ```
-## 142 - The Guard Doesnt Work
+## 142 - The Guard doesn't Work
+let's add the guard to the controller
+```ts
+import { Serialize } from '../interceptors/serialize.interceptors';
+import { ReportDto } from './dtos/report.dto';
+import { ApproveReportDto } from './dtos/approve-report.dto';
+import { AdminGuard } from '../guards/admin.guard';
+@Controller('reports')
+export class ReportsController {
+  }
+  @Patch('/:id')
+  @UseGuards(AdminGuard)
+  approveReport(@Param('id') id: number, @Body() body: ApproveReportDto) {
+    return this.reportService.changeApproval(id, body.approved);
+  }
+```
+![alt text](./Assets/images/set-03/23.png)
+![alt text](./Assets/images/set-03/24.png)
+![alt text](./Assets/images/set-03/25.png)
 ## 143 - Middlewares Guards and Interceptors
 ## 144 - Assigning CurrentUser with a Middleware
 ## 145 - Fixing a Type Definition Error
@@ -130,9 +148,7 @@ export class AdminGuard implements CanActivate {
 ## 148 - How Will We Generate an Estimate
 
 
-![alt text](./Assets/images/set-03/23.png)
-![alt text](./Assets/images/set-03/24.png)
-![alt text](./Assets/images/set-03/25.png)
+
 ![alt text](./Assets/images/set-03/26.png)
 ![alt text](./Assets/images/set-03/27.png)
 ![alt text](./Assets/images/set-03/28.png)
