@@ -76,13 +76,54 @@ export class AppModule {}
 ```
 
 ## 114 - Applying a Globally Scoped Middleware
+cleanup the main.ts file
+```ts
 
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.use();
+  await app.listen(3000);
+}
+
+```
+a
+add the global middleware
+```ts
+import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
+import { User } from './users/user.entity';
+import { APP_PIPE } from '@nestjs/core';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cookieSession = require('cookie-session');
+
+@Module({
+  imports: [
+    },
+  ],
+})
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(
+        cookieSession({
+          keys: ['asdfasdf'],
+        }),
+      )
+      .forRoutes('*');
+  }
+```
 ## 115 - Solving Failures Around Repeat Test Runs
-## 116 - Creating Separate Test and Dev Databases
 ![alt text](./Assets/images/set-02/82.png)
 ![alt text](./Assets/images/set-02/83.png)
 ![alt text](./Assets/images/set-02/84.png)
 ![alt text](./Assets/images/set-02/85.png)
+## 116 - Creating Separate Test and Dev Databases
+
 ![alt text](./Assets/images/set-02/86.png)
 ![alt text](./Assets/images/set-02/87.png)
 ![alt text](./Assets/images/set-02/88.png)
