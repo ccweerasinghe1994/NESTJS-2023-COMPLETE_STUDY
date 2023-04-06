@@ -162,13 +162,6 @@ if not
 ![alt text](./Assets/images/set-02/100.png)
 
 ## 129 - Building Associations
-## 130 - Types of Associations
-## 131 - The ManyToOne and OneToMany Decorators
-## 133 - More on Decorators
-## 134 - Setting up the Association
-## 135 - Formatting the Report Response
-## 136 - Transforming Properties with a DTO
-
 ![alt text](./Assets/images/set-03/1.png)
 ![alt text](./Assets/images/set-03/2.png)
 ![alt text](./Assets/images/set-03/3.png)
@@ -178,6 +171,14 @@ if not
 ![alt text](./Assets/images/set-03/7.png)
 ![alt text](./Assets/images/set-03/8.png)
 ![alt text](./Assets/images/set-03/9.png)
+
+## 130 - Types of Associations
+## 131 - The ManyToOne and OneToMany Decorators
+## 133 - More on Decorators
+## 134 - Setting up the Association
+## 135 - Formatting the Report Response
+## 136 - Transforming Properties with a DTO
+
 ![alt text](./Assets/images/set-03/10.png)
 ![alt text](./Assets/images/set-03/11.png)
 ![alt text](./Assets/images/set-03/12.png)
