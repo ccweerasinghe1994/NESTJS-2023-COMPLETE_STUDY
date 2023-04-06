@@ -47,11 +47,38 @@ this is the response
 ![alt text](./Assets/images/set-02/78.png)
 ![alt text](./Assets/images/set-02/79.png)
 ## 113 - Applying a Globally Scoped Pipe
+![alt text](./Assets/images/set-02/81.png)
+```ts
+import { Module, ValidationPipe } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { User } from './users/user.entity';
+import { APP_PIPE } from '@nestjs/core';
+@Module({
+  imports: [
+    ReportsModule,
+  ],
+  controllers: [AppController],
+  providers: [
+    AppService,
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({
+        whitelist: true,
+      }),
+    },
+  ],
+})
+export class AppModule {}
+```
 
 ## 114 - Applying a Globally Scoped Middleware
+
 ## 115 - Solving Failures Around Repeat Test Runs
 ## 116 - Creating Separate Test and Dev Databases
-![alt text](./Assets/images/set-02/81.png)
 ![alt text](./Assets/images/set-02/82.png)
 ![alt text](./Assets/images/set-02/83.png)
 ![alt text](./Assets/images/set-02/84.png)
