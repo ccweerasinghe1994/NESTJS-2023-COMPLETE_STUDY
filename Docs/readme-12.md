@@ -143,10 +143,40 @@ and update the env file
 DB_NAME=test.sqlite
 ```
 ## 121 - It Works
+![alt text](./Assets/images/set-02/94.png)
+let's create a global before each
+```ts
+import { rm } from 'fs/promises';
+import { join } from 'path';
+global.beforeEach(async () => {
+  try {
+    await rm(join(__dirname, '..', 'test.sqlite'));
+  } catch (e) {}
+});
+```
+
+and update the jest-e2e.json file
+```json
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "setupFilesAfterEnv": [
+    "<rootDir>/setup.ts"
+  ]
+}
+```
 ## 122 - A Followup Test
 
 
-![alt text](./Assets/images/set-02/94.png)
 ![alt text](./Assets/images/set-02/95.png)
 ![alt text](./Assets/images/set-02/96.png)
 ![alt text](./Assets/images/set-02/97.png)
