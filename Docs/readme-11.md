@@ -24,7 +24,7 @@ describe('Authentication system (e2e)', () => {
 
   it('handles the signup request', () => {
     const email = 'abc@gmail.com';
-    return request(app.getHttpServer())
+    return request(app.getHttpServer()) 
       .post('/auth/signup')
       .send({
         email,
@@ -43,14 +43,14 @@ describe('Authentication system (e2e)', () => {
 this is the response
 ![alt text](./Assets/images/set-02/77.png)
 ## 112 - App Setup Issues in Spec Files
+![alt text](./Assets/images/set-02/80.png)
+![alt text](./Assets/images/set-02/78.png)
+![alt text](./Assets/images/set-02/79.png)
 ## 113 - Applying a Globally Scoped Pipe
+
 ## 114 - Applying a Globally Scoped Middleware
 ## 115 - Solving Failures Around Repeat Test Runs
 ## 116 - Creating Separate Test and Dev Databases
-
-![alt text](./Assets/images/set-02/78.png)
-![alt text](./Assets/images/set-02/79.png)
-![alt text](./Assets/images/set-02/80.png)
 ![alt text](./Assets/images/set-02/81.png)
 ![alt text](./Assets/images/set-02/82.png)
 ![alt text](./Assets/images/set-02/83.png)
