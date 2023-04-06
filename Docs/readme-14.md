@@ -272,12 +272,51 @@ when we test it we get an error
 
 ![alt text](./Assets/images/set-03/30.png)
 ## 147 - Transforming Query String Data
+let's transform the query string data
+```ts
+  Max,
+  Min,
+} from 'class-validator';
+import { Transform } from 'class-transformer';
+export class GetEstimateDto {
+  @IsString()
+  @IsNumber()
+  @Max(2050)
+  @Min(1930)
+  @Transform(({ value }) => parseInt(value))
+  year: number;
+  @Transform(({ value }) => parseFloat(value))
+  @IsLongitude()
+  longitude: number;
+  @Transform(({ value }) => parseFloat(value))
+  @IsLatitude()
+  latitude: number;
+  @IsNumber()
+  @Max(1000000)
+  @Min(0)
+  @Transform(({ value }) => parseInt(value))
+  mileage: number;
+}
+```
+
+let's log the response
+
+```ts
+    }
+  @Get()
+  getEstimate(@Query() query: GetEstimateDto) {
+    console.log(query);
+  }
+}
+```
+this is the transformed data
+
+![alt text](./Assets/images/set-03/31.png)s
 ## 148 - How Will We Generate an Estimate
 
 
 
 
-![alt text](./Assets/images/set-03/31.png)
 ![alt text](./Assets/images/set-03/32.png)
 ![alt text](./Assets/images/set-03/33.png)
 ![alt text](./Assets/images/set-03/34.png)
