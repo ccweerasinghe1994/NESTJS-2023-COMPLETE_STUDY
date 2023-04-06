@@ -4,6 +4,25 @@
 ![alt text](./Assets/images/set-02/95.png)
 ![alt text](./Assets/images/set-02/96.png)
 ## 124 - Adding Properties to Reports
+updating the Report entity
+```ts
+
+  id: number;
+  @Column()
+  price: number;
+  @Column()
+  make: string;
+  @Column()
+  model: string;
+  @Column()
+  year: number;
+  @Column()
+  longitude: number;
+  @Column()
+  latitude: number;
+  @Column()
+  mileage: number;
+```
 ## 125 - A DTO for Report Creation
 ## 126 - Receiving Report Creation Requests
 ## 127 - Saving a Report with the Reports Service
