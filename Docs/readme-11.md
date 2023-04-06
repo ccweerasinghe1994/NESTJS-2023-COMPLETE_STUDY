@@ -124,18 +124,8 @@ export class AppModule {
 ![alt text](./Assets/images/set-02/85.png)
 ## 116 - Creating Separate Test and Dev Databases
 
+
 ![alt text](./Assets/images/set-02/86.png)
 ![alt text](./Assets/images/set-02/87.png)
 ![alt text](./Assets/images/set-02/88.png)
-![alt text](./Assets/images/set-02/89.png)
-![alt text](./Assets/images/set-02/90.png)
-![alt text](./Assets/images/set-02/91.png)
-![alt text](./Assets/images/set-02/92.png)
-![alt text](./Assets/images/set-02/93.png)
-![alt text](./Assets/images/set-02/94.png)
-![alt text](./Assets/images/set-02/95.png)
-![alt text](./Assets/images/set-02/96.png)
-![alt text](./Assets/images/set-02/97.png)
-![alt text](./Assets/images/set-02/98.png)
-![alt text](./Assets/images/set-02/99.png)
-![alt text](./Assets/images/set-02/100.png)
+
