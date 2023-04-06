@@ -1,5 +1,53 @@
 # A Basic Permissions System
 ## 137 - Adding in Report Approval 
+![alt text](./Assets/images/set-03/19.png)
+
+let's add the approved column
+```ts
+  @Column()
+  year: number;
+  @Column({ default: false })
+  approved: boolean;
+  @Column()
+  longitude: number;
+
+```
+
+let's create the new dto for the approved report
+```ts
+import { IsBoolean } from 'class-validator';
+export class ApproveReportDto {
+  @IsBoolean()
+  approved: boolean;
+}
+```
+
+let's create the new path endpoint
+```ts 
+import {
+  Body,
+  Controller,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import { CreateReportDto } from './dtos/create-report.dto';
+import { ReportsService } from './reports.service';
+import { AuthGuard } from '../guards/auth.guard';
+import { User } from '../users/user.entity';
+import { Serialize } from '../interceptors/serialize.interceptors';
+import { ReportDto } from './dtos/report.dto';
+import { ApproveReportDto } from './dtos/approve-report.dto';
+@Controller('reports')
+export class ReportsController {
+  createReport(@Body() body: CreateReportDto, @CurrentUser() user: User) {
+    return this.reportService.create(body, user);
+  }
+  @Patch('/:id')
+  approveReport(@Param('id') id: number, @Body() body: ApproveReportDto) {}
+}
+```
 ## 139 - Testing Report Approval
 ## 140 - Authorization vs Authentication
 ## 141 - Adding an Authorization Guard
@@ -12,7 +60,6 @@
 ## 148 - How Will We Generate an Estimate
 
 
-![alt text](./Assets/images/set-03/19.png)
 ![alt text](./Assets/images/set-03/20.png)
 ![alt text](./Assets/images/set-03/21.png)
 ![alt text](./Assets/images/set-03/22.png)

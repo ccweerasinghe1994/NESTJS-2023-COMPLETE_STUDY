@@ -17,6 +17,9 @@ export class Report {
   @Column()
   year: number;
 
+  @Column({ default: false })
+  approved: boolean;
+
   @Column()
   longitude: number;
 
