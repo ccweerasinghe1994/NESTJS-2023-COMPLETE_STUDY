@@ -145,6 +145,47 @@ export class ReportsController {
 ![alt text](./Assets/images/set-03/27.png)
 ![alt text](./Assets/images/set-03/28.png)
 ## 144 - Assigning CurrentUser with a Middleware
+![alt text](./Assets/images/set-03/29.png)
+
+let's create a new middleware
+```ts
+import { Injectable, NestMiddleware } from '@nestjs/common';
+import { NextFunction, Request, Response } from 'express';
+import { UsersService } from '../users/users.service';
+@Injectable()
+export class CurrentUserMiddleware implements NestMiddleware {
+  constructor(private userService: UsersService) {}
+  async use(req: Request, res: Response, next: NextFunction) {
+    const { userId } = req.session || {};
+    if (userId) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      req.currentUser = await this.userService.findOne(userId);
+    }
+    next();
+  }
+}
+```
+let's add this module to the user module
+```ts
+import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './user.entity';
+import { AuthService } from './auth.service';
+import { CurrentUserMiddleware } from '../middlewares/current-user.middleware';
+@Module({
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UsersController],
+  providers: [UsersService, AuthService],
+})
+export class UsersModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CurrentUserMiddleware).forRoutes('*');
+  }
+}
+```
 ## 145 - Fixing a Type Definition Error
 ## 146 - Validating Query String Values
 ## 147 - Transforming Query String Data
@@ -153,7 +194,6 @@ export class ReportsController {
 
 
 
-![alt text](./Assets/images/set-03/29.png)
 ![alt text](./Assets/images/set-03/30.png)
 ![alt text](./Assets/images/set-03/31.png)
 ![alt text](./Assets/images/set-03/32.png)
