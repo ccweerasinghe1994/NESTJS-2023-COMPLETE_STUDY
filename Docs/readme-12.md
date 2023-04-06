@@ -176,10 +176,25 @@ and update the jest-e2e.json file
 ```
 ## 122 - A Followup Test
 
-
-![alt text](./Assets/images/set-02/95.png)
-![alt text](./Assets/images/set-02/96.png)
-![alt text](./Assets/images/set-02/97.png)
-![alt text](./Assets/images/set-02/98.png)
-![alt text](./Assets/images/set-02/99.png)
-![alt text](./Assets/images/set-02/100.png)
+```ts
+        expect(email).toEqual(email);
+      });
+  });
+  it('signup as a new user and get the signin user', async () => {
+    const email = 'abcd@gmail.com';
+    const user = await request(app.getHttpServer())
+      .post('/auth/signup')
+      .send({
+        email,
+        password: '123456',
+      })
+      .expect(201);
+    const cookie = user.get('Set-Cookie');
+    const { body } = await request(app.getHttpServer())
+      .get('/auth/whoami')
+      .set('Cookie', cookie)
+      .expect(200);
+    expect(body.email).toEqual(email);
+  });
+});
+```

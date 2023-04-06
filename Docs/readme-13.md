@@ -13,3 +13,9 @@
 ## 134 - Setting up the Association
 ## 135 - Formatting the Report Response
 ## 136 - Transforming Properties with a DTO
+![alt text](./Assets/images/set-02/95.png)
+![alt text](./Assets/images/set-02/96.png)
+![alt text](./Assets/images/set-02/97.png)
+![alt text](./Assets/images/set-02/98.png)
+![alt text](./Assets/images/set-02/99.png)
+![alt text](./Assets/images/set-02/100.png)
