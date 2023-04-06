@@ -210,13 +210,73 @@ export class CurrentUserMiddleware implements NestMiddleware {
     next();
 ```
 ## 146 - Validating Query String Values
+let's create a dto for getting estimation
+```ts
+
+import {
+  IsLatitude,
+  IsLongitude,
+  IsNumber,
+  IsString,
+  Max,
+  Min,
+} from 'class-validator';
+export class GetEstimateDto {
+  @IsString()
+  make: string;
+  @IsString()
+  model: string;
+  @IsNumber()
+  @Max(2050)
+  @Min(1930)
+  year: number;
+  @IsLongitude()
+  longitude: number;
+  @IsLatitude()
+  latitude: number;
+  @IsNumber()
+  @Max(1000000)
+  @Min(0)
+  mileage: number;
+}
+```
+
+use it in the query
+```ts
+  reports.controller.ts
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import { CreateReportDto } from './dtos/create-report.dto';
+import { ReportDto } from './dtos/report.dto';
+import { ApproveReportDto } from './dtos/approve-report.dto';
+import { AdminGuard } from '../guards/admin.guard';
+import { GetEstimateDto } from './dtos/get-estimate.dto';
+@Controller('reports')
+export class ReportsController {
+  approveReport(@Param('id') id: number, @Body() body: ApproveReportDto) {
+    return this.reportService.changeApproval(id, body.approved);
+  }
+  @Get()
+  getEstimate(@Query() query: GetEstimateDto) {}
+}
+```
+when we test it we get an error
+
+![alt text](./Assets/images/set-03/30.png)
 ## 147 - Transforming Query String Data
 ## 148 - How Will We Generate an Estimate
 
 
 
 
-![alt text](./Assets/images/set-03/30.png)
 ![alt text](./Assets/images/set-03/31.png)
 ![alt text](./Assets/images/set-03/32.png)
 ![alt text](./Assets/images/set-03/33.png)
