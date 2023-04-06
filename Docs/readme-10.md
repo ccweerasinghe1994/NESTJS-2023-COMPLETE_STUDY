@@ -431,7 +431,31 @@ describe('UsersController', () => {
 ```
 ## 109 - Testing the Signin Method
 
-
+```ts
+   };
+    FakeAuthService = {
+      signIn: (email: string, password: string) => {
+        return Promise.resolve({ id: 1, email, password } as User);
+      },
+      // signUp():()=>{}
+    };
+      expect(error.message).toEqual('User not found');
+    }
+  });
+  it('signIn return a user if the given email and password is correct', async () => {
+    const session = {
+      userId: -1,
+    };
+    const user = await controller.signIn(
+      { email: 'as', password: 'as' },
+      session,
+    );
+    expect(user).toBeDefined();
+    expect(user.id).toEqual(1);
+    expect(session.userId).toEqual(1);
+  });
+});
+```
 ![alt text](./Assets/images/set-02/75.png)
 ![alt text](./Assets/images/set-02/76.png)
 ![alt text](./Assets/images/set-02/77.png)
