@@ -141,6 +141,9 @@ export class ReportsController {
 ![alt text](./Assets/images/set-03/24.png)
 ![alt text](./Assets/images/set-03/25.png)
 ## 143 - Middlewares Guards and Interceptors
+![alt text](./Assets/images/set-03/26.png)
+![alt text](./Assets/images/set-03/27.png)
+![alt text](./Assets/images/set-03/28.png)
 ## 144 - Assigning CurrentUser with a Middleware
 ## 145 - Fixing a Type Definition Error
 ## 146 - Validating Query String Values
@@ -149,9 +152,7 @@ export class ReportsController {
 
 
 
-![alt text](./Assets/images/set-03/26.png)
-![alt text](./Assets/images/set-03/27.png)
-![alt text](./Assets/images/set-03/28.png)
+
 ![alt text](./Assets/images/set-03/29.png)
 ![alt text](./Assets/images/set-03/30.png)
 ![alt text](./Assets/images/set-03/31.png)
