@@ -49,6 +49,52 @@ export class ReportsController {
 }
 ```
 ## 139 - Testing Report Approval
+let's change the report dto to include the approved column
+```ts
+  latitude: number;
+  @Expose()
+  mileage: number;
+  @Expose()
+  approved: boolean;
+  @Expose()
+  @Transform(({ obj }) => obj.user.id)
+  userId: number;
+```
+
+let's create the method for the approve report
+```ts
+13 - Relations with TypeORM\src\reports\reports.service.ts
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateReportDto } from './dtos/create-report.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Report } from './report.entity';
+    report.user = user;
+    return await this.reportsRepository.save(report);
+  }
+  async changeApproval(id: number, approved: boolean) {
+    const report = await this.reportsRepository.findOne({
+      where: { id },
+    });
+    if (!report) throw new NotFoundException('Report not found');
+    report.approved = approved;
+    return await this.reportsRepository.save(report);
+  }
+}
+```
+
+let's use the newly created method inside the controller
+```ts
+13 - Relations with TypeORM\src\reports\reports.controller.ts
+  }
+  @Patch('/:id')
+  approveReport(@Param('id') id: number, @Body() body: ApproveReportDto) {
+    return this.reportService.changeApproval(id, body.approved);
+  }
+}
+```
+let's test the result in postman
+
+![alt text](./Assets/images/set-03/20.png)
 ## 140 - Authorization vs Authentication
 ## 141 - Adding an Authorization Guard
 ## 142 - The Guard Doesnt Work
@@ -60,7 +106,6 @@ export class ReportsController {
 ## 148 - How Will We Generate an Estimate
 
 
-![alt text](./Assets/images/set-03/20.png)
 ![alt text](./Assets/images/set-03/21.png)
 ![alt text](./Assets/images/set-03/22.png)
 ![alt text](./Assets/images/set-03/23.png)
