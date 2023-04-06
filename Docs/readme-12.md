@@ -56,7 +56,74 @@ const cookieSession = require('cookie-session');
   ]
 ```
 
-## 119 - Specifying the Runtime Environment
+## 119 - Specifying the Runtime Environment.
+let's add cross-env to the project
+```bash
+npm i cross-env
+```
+```json
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "cross-env NODE_ENV=development nest start",
+    "start:dev": "cross-env NODE_ENV=development nest start --watch",
+    "start:debug": "cross-env NODE_ENV=development nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:cov": "cross-env NODE_ENV=test jest --coverage",
+    "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "cross-env NODE_ENV=test jest --config ./test/jest-e2e.json"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "cookie-session": "^2.0.0",
+    // new dependency
+    "cross-env": "^7.0.3",
+    "mysql2": "^3.2.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.2.0",
+```
+let's remove the app.use() from the main.ts
+```ts
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
+}
+```
+
+let's fix a small bug in the app.module.ts
+```ts
+
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV}`,
+    }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+        synchronize: true,
+      }),
+    }),
+    UsersModule,
+    ReportsModule,
+  ],
+```
+
+update the .gitignore file
+```gitignore
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ENV files
+.env.*
+```
+
 ## 120 - Solving a SQLite Error
 ## 121 - It Works
 ## 122 - A Followup Test
