@@ -173,14 +173,47 @@ if not
 ![alt text](./Assets/images/set-03/9.png)
 
 ## 130 - Types of Associations
+update the user entity
+```ts
+  AfterUpdate,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Report } from '../reports/report.entity';
+@Entity()
+export class User {
+  @Column()
+  password: string;
+  @OneToMany(() => Report, (report) => report.user)
+  reports: Report[];
+  @AfterInsert()
+  logInsert() {
+    console.log('Inserted user with id', this.id);
+```
+
+update report entity
+```ts
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../users/user.entity';
+@Entity()
+export class Report {
+  @Column()
+  mileage: number;
+  @ManyToOne(() => User, (user) => user.reports)
+  user: User;
+}
+```
+
+![alt text](./Assets/images/set-03/10.png)
+![alt text](./Assets/images/set-03/11.png)
 ## 131 - The ManyToOne and OneToMany Decorators
 ## 133 - More on Decorators
 ## 134 - Setting up the Association
 ## 135 - Formatting the Report Response
 ## 136 - Transforming Properties with a DTO
 
-![alt text](./Assets/images/set-03/10.png)
-![alt text](./Assets/images/set-03/11.png)
 ![alt text](./Assets/images/set-03/12.png)
 ![alt text](./Assets/images/set-03/13.png)
 ![alt text](./Assets/images/set-03/14.png)
