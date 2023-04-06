@@ -10,6 +10,6 @@ export class ReportsController {
   @Post()
   @UseGuards(AuthGuard)
   createReport(@Body() body: CreateReportDto) {
-    this.reportService.create(body);
+    return this.reportService.create(body);
   }
 }
