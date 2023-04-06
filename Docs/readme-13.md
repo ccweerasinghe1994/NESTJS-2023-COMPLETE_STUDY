@@ -216,13 +216,47 @@ export class Report {
 ![alt text](./Assets/images/set-03/13.png)
 ## 134 - Setting up the Association
 
-## 135 - Formatting the Report Response
-## 136 - Transforming Properties with a DTO
-
 ![alt text](./Assets/images/set-03/14.png)
 ![alt text](./Assets/images/set-03/15.png)
 ![alt text](./Assets/images/set-03/16.png)
 ![alt text](./Assets/images/set-03/17.png)
+
+let's pass the user id to the report service
+```ts
+import { CreateReportDto } from './dtos/create-report.dto';
+import { ReportsService } from './reports.service';
+import { AuthGuard } from '../guards/auth.guard';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
+import { User } from '../users/user.entity';
+@Controller('reports')
+export class ReportsController {
+  @Post()
+  @UseGuards(AuthGuard)
+  createReport(@Body() body: CreateReportDto, @CurrentUser() user: User) {
+    return this.reportService.create(body, user);
+  }
+}
+```
+
+let's update the report service
+```ts
+import { InjectRepository } from '@nestjs/typeorm';
+import { Report } from './report.entity';
+import { Repository } from 'typeorm';
+import { User } from '../users/user.entity';
+@Injectable()
+export class ReportsService {
+    @InjectRepository(Report) private reportsRepository: Repository<Report>,
+  ) {}
+  async create(reportDto: CreateReportDto, user: User) {
+    const report = this.reportsRepository.create(reportDto);
+    report.user = user;
+    return await this.reportsRepository.save(report);
+  }
+```
+## 135 - Formatting the Report Response
+## 136 - Transforming Properties with a DTO
+
 ![alt text](./Assets/images/set-03/18.png)
 ![alt text](./Assets/images/set-03/19.png)
 ![alt text](./Assets/images/set-03/20.png)
