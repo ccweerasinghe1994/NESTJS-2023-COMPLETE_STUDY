@@ -28,6 +28,9 @@ export class AppModule {
 ![alt text](./Assets/images/set-03/41.png)
 ![alt text](./Assets/images/set-03/42.png)
 ## 157 - Headaches with Config Management
+![alt text](./Assets/images/set-03/43.png)
+![alt text](./Assets/images/set-03/44.png)
+![alt text](./Assets/images/set-03/45.png)
 ## 158 - TypeORM and Nest Config is Great
 ## 159 - EnvSpecific Database Config
 ## 160 - Installing the TypeORM CLI
@@ -40,9 +43,7 @@ export class AppModule {
 
 
 
-![alt text](./Assets/images/set-03/43.png)
-![alt text](./Assets/images/set-03/44.png)
-![alt text](./Assets/images/set-03/45.png)
+
 ![alt text](./Assets/images/set-03/46.png)
 ![alt text](./Assets/images/set-03/47.png)
 ![alt text](./Assets/images/set-03/48.png)
