@@ -45,7 +45,58 @@ export class AppModule {
 ![alt text](./Assets/images/set-03/53.png)
 ![alt text](./Assets/images/set-03/54.png)
 ## 160 - Installing the TypeORM CLI
+let's create a data source file 
+```ts
+import { DataSource, DataSourceOptions } from 'typeorm';
+import * as process from 'process';
+export const myDataSourceOptions: DataSourceOptions = {
+  type: 'sqlite',
+  database: process.env.DB_NAME || 'test.sqlite',
+  entities: ['dist/src/**/*.entity.js'],
+  migrations: ['dist/src/migrations/*.js'],
+  synchronize: false,
+};
+const myDataSource = new DataSource(myDataSourceOptions);
+export default myDataSource;
+```
 
+let's add a new script to the package.json
+```json
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:cov": "cross-env NODE_ENV=test jest --coverage",
+    "test:debug": "cross-env NODE_ENV=test node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "cross-env NODE_ENV=test jest --config ./test/jest-e2e.json --maxWorkers=1",
+    "typeorm": "typeorm-ts-node-esm"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.0.0",
+    "supertest": "^6.1.3",
+    "ts-jest": "^29",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "^4"
+  },
+```
+
+let's generate a empty migration file
+```bash
+typeorm migration:create ./db/migrations/InitialSchema 
+```
+generated migration
+```ts
+import { MigrationInterface, QueryRunner } from "typeorm"
+
+export class InitialSchema1680856502015 implements MigrationInterface {
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+    }
+
+}
+```
 
 ## 161 - Generating and Running Migrations
 ## 163 - Running Migrations During E2E Tests
