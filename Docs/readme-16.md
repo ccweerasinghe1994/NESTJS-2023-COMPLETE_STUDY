@@ -19,6 +19,9 @@ export class AppModule {
       .forRoutes('*');
 ```
 ## 154 - Understanding the Synchronize Flag
+
+![alt text](./Assets/images/set-03/38.png)
+![alt text](./Assets/images/set-03/39.png)
 ## 155 - The Dangers of Synchronize
 ## 156 - The Theory Behind Migrations
 ## 157 - Headaches with Config Management
@@ -33,8 +36,6 @@ export class AppModule {
 ## 167 - Deploying the App Final Lecture
 
 
-![alt text](./Assets/images/set-03/38.png)
-![alt text](./Assets/images/set-03/39.png)
 ![alt text](./Assets/images/set-03/40.png)
 ![alt text](./Assets/images/set-03/41.png)
 ![alt text](./Assets/images/set-03/42.png)
