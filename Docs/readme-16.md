@@ -25,6 +25,8 @@ export class AppModule {
 ## 155 - The Dangers of Synchronize
 ![alt text](./Assets/images/set-03/40.png)
 ## 156 - The Theory Behind Migrations
+![alt text](./Assets/images/set-03/41.png)
+![alt text](./Assets/images/set-03/42.png)
 ## 157 - Headaches with Config Management
 ## 158 - TypeORM and Nest Config is Great
 ## 159 - EnvSpecific Database Config
@@ -37,8 +39,7 @@ export class AppModule {
 ## 167 - Deploying the App Final Lecture
 
 
-![alt text](./Assets/images/set-03/41.png)
-![alt text](./Assets/images/set-03/42.png)
+
 ![alt text](./Assets/images/set-03/43.png)
 ![alt text](./Assets/images/set-03/44.png)
 ![alt text](./Assets/images/set-03/45.png)
