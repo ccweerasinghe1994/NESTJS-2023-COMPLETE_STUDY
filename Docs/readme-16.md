@@ -79,6 +79,9 @@ let's add a new script to the package.json
   },
 ```
 
+
+
+## 161 - Generating and Running Migrations
 let's generate a empty migration file
 ```bash
 typeorm migration:create ./db/migrations/InitialSchema 
@@ -97,8 +100,6 @@ export class InitialSchema1680856502015 implements MigrationInterface {
 
 }
 ```
-
-## 161 - Generating and Running Migrations
 ## 163 - Running Migrations During E2E Tests
 ## 164 - Production DB Config
 ## 166 - Heroku Specific Project Config
