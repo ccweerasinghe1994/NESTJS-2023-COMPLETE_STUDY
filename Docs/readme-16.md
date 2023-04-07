@@ -100,6 +100,76 @@ export class InitialSchema1680856502015 implements MigrationInterface {
 
 }
 ```
+
+let's genarate the migration file
+![alt text](./Assets/images/set-03/55.png)
+this will create a migration file in the db/migrations folder
+```ts
+import { MigrationInterface, QueryRunner } from 'typeorm';
+
+export class Initial1680860477262 implements MigrationInterface {
+  name = 'Initial1680860477262';
+
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(
+      `CREATE TABLE "report" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer NOT NULL, "make" varchar NOT NULL, "model" varchar NOT NULL, "year" integer NOT NULL, "approved" boolean NOT NULL DEFAULT (0), "longitude" integer NOT NULL, "latitude" integer NOT NULL, "mileage" integer NOT NULL, "userId" integer)`,
+    );
+    await queryRunner.query(
+      `CREATE TABLE "user" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "password" varchar NOT NULL, "isAdmin" boolean NOT NULL DEFAULT (1))`,
+    );
+    await queryRunner.query(
+      `CREATE TABLE "temporary_report" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer NOT NULL, "make" varchar NOT NULL, "model" varchar NOT NULL, "year" integer NOT NULL, "approved" boolean NOT NULL DEFAULT (0), "longitude" integer NOT NULL, "latitude" integer NOT NULL, "mileage" integer NOT NULL, "userId" integer, CONSTRAINT "FK_e347c56b008c2057c9887e230aa" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION)`,
+    );
+    await queryRunner.query(
+      `INSERT INTO "temporary_report"("id", "price", "make", "model", "year", "approved", "longitude", "latitude", "mileage", "userId") SELECT "id", "price", "make", "model", "year", "approved", "longitude", "latitude", "mileage", "userId" FROM "report"`,
+    );
+    await queryRunner.query(`DROP TABLE "report"`);
+    await queryRunner.query(
+      `ALTER TABLE "temporary_report" RENAME TO "report"`,
+    );
+  }
+
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(
+      `ALTER TABLE "report" RENAME TO "temporary_report"`,
+    );
+    await queryRunner.query(
+      `CREATE TABLE "report" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "price" integer NOT NULL, "make" varchar NOT NULL, "model" varchar NOT NULL, "year" integer NOT NULL, "approved" boolean NOT NULL DEFAULT (0), "longitude" integer NOT NULL, "latitude" integer NOT NULL, "mileage" integer NOT NULL, "userId" integer)`,
+    );
+    await queryRunner.query(
+      `INSERT INTO "report"("id", "price", "make", "model", "year", "approved", "longitude", "latitude", "mileage", "userId") SELECT "id", "price", "make", "model", "year", "approved", "longitude", "latitude", "mileage", "userId" FROM "temporary_report"`,
+    );
+    await queryRunner.query(`DROP TABLE "temporary_report"`);
+    await queryRunner.query(`DROP TABLE "user"`);
+    await queryRunner.query(`DROP TABLE "report"`);
+  }
+}
+```
+
+then add the genarated migration file to the data source
+```ts
+import { DataSource, DataSourceOptions } from 'typeorm';
+import * as process from 'process';
+import { User } from '../src/users/user.entity';
+import { Report } from '../src/reports/report.entity';
+import { Initial1680860477262 } from './migrations/1680860477262-Initial';
+
+export const myDataSourceOptions: DataSourceOptions = {
+  type: 'sqlite',
+  database: process.env.DB_NAME || 'db.sqlite',
+  entities: [User, Report],
+  migrations: [Initial1680860477262],
+  synchronize: false,
+};
+
+const myDataSource = new DataSource(myDataSourceOptions);
+export default myDataSource;
+```
+and run the migration
+```bash
+typeorm migration:run -d ./dist/db/app-data-source
+```
+![alt text](./Assets/images/set-03/56.png)
 ## 163 - Running Migrations During E2E Tests
 ## 164 - Production DB Config
 ## 166 - Heroku Specific Project Config
@@ -110,8 +180,6 @@ export class InitialSchema1680856502015 implements MigrationInterface {
 
 
 
-![alt text](./Assets/images/set-03/55.png)
-![alt text](./Assets/images/set-03/56.png)
 ![alt text](./Assets/images/set-03/57.png)
 ![alt text](./Assets/images/set-03/58.png)
 ![alt text](./Assets/images/set-03/59.png)
