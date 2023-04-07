@@ -1,5 +1,7 @@
 # Production Deployment
 ## 152 - The Path to Production 
+![alt text](./Assets/images/set-03/37.png)
+
 ## 153 - Providing the Cookie Key
 ## 154 - Understanding the Synchronize Flag
 ## 155 - The Dangers of Synchronize
@@ -16,7 +18,6 @@
 ## 167 - Deploying the App Final Lecture
 
 
-![alt text](./Assets/images/set-03/37.png)
 ![alt text](./Assets/images/set-03/38.png)
 ![alt text](./Assets/images/set-03/39.png)
 ![alt text](./Assets/images/set-03/40.png)
