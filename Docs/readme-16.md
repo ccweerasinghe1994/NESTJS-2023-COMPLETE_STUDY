@@ -32,8 +32,21 @@ export class AppModule {
 ![alt text](./Assets/images/set-03/44.png)
 ![alt text](./Assets/images/set-03/45.png)
 ## 158 - TypeORM and Nest Config is Great
+
+![alt text](./Assets/images/set-03/46.png)
+![alt text](./Assets/images/set-03/47.png)
+![alt text](./Assets/images/set-03/48.png)
+![alt text](./Assets/images/set-03/49.png)
+![alt text](./Assets/images/set-03/50.png)
+![alt text](./Assets/images/set-03/51.png)
+![alt text](./Assets/images/set-03/52.png)
 ## 159 - EnvSpecific Database Config
+
+![alt text](./Assets/images/set-03/53.png)
+![alt text](./Assets/images/set-03/54.png)
 ## 160 - Installing the TypeORM CLI
+
+
 ## 161 - Generating and Running Migrations
 ## 163 - Running Migrations During E2E Tests
 ## 164 - Production DB Config
@@ -44,15 +57,7 @@ export class AppModule {
 
 
 
-![alt text](./Assets/images/set-03/46.png)
-![alt text](./Assets/images/set-03/47.png)
-![alt text](./Assets/images/set-03/48.png)
-![alt text](./Assets/images/set-03/49.png)
-![alt text](./Assets/images/set-03/50.png)
-![alt text](./Assets/images/set-03/51.png)
-![alt text](./Assets/images/set-03/52.png)
-![alt text](./Assets/images/set-03/53.png)
-![alt text](./Assets/images/set-03/54.png)
+
 ![alt text](./Assets/images/set-03/55.png)
 ![alt text](./Assets/images/set-03/56.png)
 ![alt text](./Assets/images/set-03/57.png)
