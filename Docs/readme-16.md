@@ -171,6 +171,10 @@ typeorm migration:run -d ./dist/db/app-data-source
 ```
 ![alt text](./Assets/images/set-03/56.png)
 ## 163 - Running Migrations During E2E Tests
+create a migration file
+```bash
+typeorm migration:create ./db/migrations/InitialSchema -d ./dist/db/app-data-source
+```
 ## 164 - Production DB Config
 ## 166 - Heroku Specific Project Config
 ## 166 - Heroku Specific Project Config_DV
