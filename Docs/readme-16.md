@@ -3,6 +3,21 @@
 ![alt text](./Assets/images/set-03/37.png)
 
 ## 153 - Providing the Cookie Key
+let's add a cookie key to the env file
+```ts
+  ],
+})
+export class AppModule {
+  constructor(private configService: ConfigService) {}
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(
+        cookieSession({
+          keys: [this.configService.get<string>('COOKIE_KEY')],
+        }),
+      )
+      .forRoutes('*');
+```
 ## 154 - Understanding the Synchronize Flag
 ## 155 - The Dangers of Synchronize
 ## 156 - The Theory Behind Migrations
